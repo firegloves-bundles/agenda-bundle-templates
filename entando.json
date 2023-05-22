@@ -1,0 +1,15 @@
+{
+    "microservices": [
+        {
+            "name": "springboot-agenda",
+            "stack": "spring-boot",
+            "healthCheckPath": "/api/health"
+        }
+    ],
+    "microfrontends": [],
+    "svc": [],
+    "name": "agenda-bundle-templates",
+    "version": "0.0.1",
+    "description": "agenda-bundle-templates description",
+    "type": "bundle"
+}
