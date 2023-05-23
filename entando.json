@@ -7,7 +7,10 @@
         }
     ],
     "microfrontends": [],
-    "svc": [],
+    "svc": [
+        "agenda-postgresql",
+        "agenda-keycloak"
+    ],
     "name": "agenda-bundle-templates",
     "version": "0.0.1",
     "description": "agenda-bundle-templates description",
