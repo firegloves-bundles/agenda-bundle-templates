@@ -3,7 +3,8 @@
         {
             "name": "springboot-agenda",
             "stack": "spring-boot",
-            "healthCheckPath": "/api/health"
+            "healthCheckPath": "/actuator/health",
+            "dbms": "postgresql"
         }
     ],
     "microfrontends": [],
