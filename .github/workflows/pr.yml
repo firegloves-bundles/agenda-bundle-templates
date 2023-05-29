@@ -5,6 +5,10 @@ on:
       - opened
       - synchronize
       - reopened
+
+env:
+  LD_LIBRARY_PATH: /__t/Java_Temurin-Hotspot_jdk/17.0.7-7/x64/lib/server
+
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
@@ -18,7 +22,7 @@ jobs:
         fetch-depth: 0
     - uses: actions/setup-java@v3
       with:
-        distribution: 'temurin' # See 'Supported distributions' for available options
+        distribution: 'temurin'
         java-version: '17'
     - name: SonarQube Scan
       run: |
@@ -46,7 +50,7 @@ jobs:
           helpMessage: "Example: 'ENG-123 A change' or 'ENGPM-123 A change'"
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
+          distribution: 'temurin'
           java-version: '17'
       - name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -57,14 +61,14 @@ jobs:
       - name: Pack the application bundle
         id: pack
         env:
-          DOCKER_ORG: entando
+          DOCKER_ORG: entandodemo
         run: |
           versionSuffix=$(echo "${{ github.event.pull_request.title }}" | awk '{print $1}')
           bash .github/functions/utils.sh setBundleVersion -$versionSuffix
           bash .github/functions/utils.sh setComponentVersions -$versionSuffix
           ent --debug bundle pack --org $DOCKER_ORG --stdout --fail-fast
           ent --debug bundle publish
-          version=$(bash ../.github/functions/utils.sh getBundleImage)
+          version=$(bash .github/functions/utils.sh getBundleImage)
           echo "VERSION=$version" >> $GITHUB_OUTPUT
       - name: Publish artifact version
         uses: thollander/actions-comment-pull-request@v2

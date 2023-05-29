@@ -4,6 +4,10 @@ on:
     branches:
       - develop
       - release/*
+
+env:
+  LD_LIBRARY_PATH: /__t/Java_Temurin-Hotspot_jdk/17.0.7-7/x64/lib/server
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
     steps:
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
+          distribution: 'temurin'
           java-version: '17'
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -27,14 +31,14 @@ jobs:
       - name: Pack the application bundle
         id: pack
         env:
-          DOCKER_ORG: entando
+          DOCKER_ORG: entandodemo
         run: |
           versionSuffix=SNAPSHOT
           bash .github/functions/utils.sh setBundleVersion -$versionSuffix
           bash .github/functions/utils.sh setComponentVersions -$versionSuffix
           ent --debug bundle pack --org $DOCKER_ORG --stdout --fail-fast
           ent --debug bundle publish
-          version=$(bash ../.github/functions/utils.sh getBundleImage)
+          version=$(bash .github/functions/utils.sh getBundleImage)
           echo "VERSION=$version" >> $GITHUB_OUTPUT
   sonarqube:
     runs-on: ubuntu-latest
@@ -45,7 +49,7 @@ jobs:
     steps:
       - uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
+          distribution: 'temurin'
           java-version: '17'
       - uses: actions/checkout@v3
         with:
