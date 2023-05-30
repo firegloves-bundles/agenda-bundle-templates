@@ -163,8 +163,57 @@ class ContactControllerIT extends PostgreSqlTestContainer {
                 .andExpect(jsonPath("$.phone").value("+391234567"));
     }
 
+    @Test
+    @Transactional
+    void updateAContactShouldUpdateTheDatabase() throws Exception {
+        Long currentFirstContactId = contactsList.get(0).getId();
+        ContactRecord contactUpdated = new ContactRecord(currentFirstContactId, "new name", "new lastname", "new address", "new phone");
 
-    public static String toJSON(final Object obj) {
+        contactMockMvc
+                .perform(put("/api/contacts")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+
+        ContactEntity contactSavedFromDb =  contactRepository.findOneById(currentFirstContactId).get();
+
+        assertThat(contactSavedFromDb.getName()).isEqualTo("new name");
+        assertThat(contactSavedFromDb.getLastname()).isEqualTo("new lastname");
+        assertThat(contactSavedFromDb.getAddress()).isEqualTo("new address");
+        assertThat(contactSavedFromDb.getPhone()).isEqualTo("new phone");
+    }
+
+    @Test
+    @Transactional
+    void updateAContactWithAnUnknownIdShouldReturnANotFoundCode() throws Exception {
+        ContactRecord contactUpdated = new ContactRecord(Long.MAX_VALUE, "new name", "new lastname", "new address", "new phone");
+
+        contactMockMvc
+                .perform(put("/api/contacts")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @Transactional
+    void updateARecordWithANullIdShouldReturnABadRequestCode() throws Exception {
+        ContactRecord contactUpdated = new ContactRecord(null, "", "", "", "");
+
+        contactMockMvc
+                .perform(put("/api/contacts")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest());
+    }
+
+    private static String toJSON(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
         } catch (Exception e) {
