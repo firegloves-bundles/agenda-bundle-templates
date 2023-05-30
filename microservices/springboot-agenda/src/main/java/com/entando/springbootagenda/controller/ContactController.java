@@ -2,6 +2,7 @@ package com.entando.springbootagenda.controller;
 
 import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.service.ContactService;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.util.List;
 
 @RestController()
 @RequestMapping("/api")

@@ -1,13 +1,10 @@
 package com.entando.springbootagenda.service.mapper;
 
-import static net.bytebuddy.matcher.ElementMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import com.entando.springbootagenda.model.entity.ContactEntity;
 import com.entando.springbootagenda.model.record.ContactRecord;
-import java.util.Optional;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class ContactMapperIT {
         final ContactRecord record = getContactRecordForTest();
         final ContactEntity entity = mapper.toEntity(record);
         assertNotNull(entity);
-        assertEquals((long)2677, (long)entity.getId());
+        assertEquals(2677, (long)entity.getId());
         assertEquals("John", entity.getName());
         assertEquals("Doe", entity.getLastname());
         assertEquals("Pennylane ave.", entity.getAddress());
@@ -40,7 +37,7 @@ public class ContactMapperIT {
         final ContactRecord record = mapper.toRecord(entity);
 
         assertNotNull(entity);
-        assertEquals((long)2677, (long)record.id());
+        assertEquals(2677, (long)record.id());
         assertEquals("John", record.name());
         assertEquals("Doe", record.lastname());
         assertEquals("Pennylane ave.", record.address());
