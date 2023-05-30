@@ -10,7 +10,55 @@
             }
         }
     ],
-    "microfrontends": [],
+    "microfrontends": [
+        {
+            "name": "vue-widget-agenda",
+            "customElement": "vue-widget-agenda",
+            "buildFolder": "dist",
+            "stack": "custom",
+            "type": "widget",
+            "group": "free",
+            "version": "0.0.1",
+            "publicFolder": "public",
+            "category" : "Agenda",
+            "commands": {
+                "run": "npm run dev",
+                "build": "npm run build",
+                "pack": "npm run build"
+            },
+            "titles": {
+                "en": "vue-widget-agenda",
+                "it": "vue-widget-agenda"
+            }
+        },
+        {
+            "name": "angular-widget-agenda",
+            "customElement": "angular-widget-agenda",
+            "stack": "angular",
+            "buildFolder": "dist",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",           
+            "category" : "Agenda",
+            "titles": {
+                "en": "angular-widget-agenda",
+                "it": "angular-widget-agenda"
+            }
+        },
+        {
+            "name": "react-widget-agenda",
+            "customElement": "react-widget-agenda",
+            "stack": "react",
+            "type": "widget",
+            "group": "free",
+            "publicFolder": "public",
+            "category" : "Agenda",
+            "titles": {
+                "en": "react-widget-agenda",
+                "it": "react-widget-agenda"
+            }
+        }
+    ],
     "svc": [
         "agenda-postgresql",
         "agenda-keycloak"
