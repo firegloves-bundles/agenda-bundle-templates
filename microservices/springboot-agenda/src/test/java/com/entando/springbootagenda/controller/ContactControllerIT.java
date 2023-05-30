@@ -3,7 +3,9 @@ package com.entando.springbootagenda.controller;
 import com.entando.springbootagenda.SpringbootAgendaApplication;
 import com.entando.springbootagenda.config.PostgreSqlTestContainer;
 import com.entando.springbootagenda.model.entity.ContactEntity;
+import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.repository.ContactRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -142,5 +144,31 @@ class ContactControllerIT extends PostgreSqlTestContainer {
                         .with(csrf())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void createContactWithAllFieldsSet() throws Exception {
+        contactMockMvc
+                .perform(post("/api/contact").accept(MediaType.APPLICATION_JSON)
+                        .with(csrf())
+                        .content(toJSON(new ContactRecord(null, "John", "Doe", "address", "+391234567")))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.name").value("John"))
+                .andExpect(jsonPath("$.lastname").value("Doe"))
+                .andExpect(jsonPath("$.address").value("address"))
+                .andExpect(jsonPath("$.phone").value("+391234567"));
+    }
+
+
+    public static String toJSON(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
