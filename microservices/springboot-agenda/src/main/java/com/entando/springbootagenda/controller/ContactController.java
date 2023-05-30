@@ -56,10 +56,27 @@ public class ContactController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping("/contact")
-      public ResponseEntity<ContactRecord> createContact(@RequestBody ContactRecord contact) {
-          log.debug("REST request to create a NEW contact: " + contact);
-          ContactRecord created = contactService.save(contact);
-          return new ResponseEntity<>(created, HttpStatus.CREATED);
-      }
+  @PostMapping("/contact")
+    public ResponseEntity<ContactRecord> createContact(@RequestBody ContactRecord contact) {
+        log.debug("REST request to create a NEW contact: {}", contact );
+        ContactRecord created = contactService.save(contact);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/contacts")
+    public ResponseEntity<String> updateContact(@RequestBody ContactRecord contactRecord) {
+        log.debug("REST request to update contact: {}", contactRecord.name());
+
+        if(contactRecord.id() == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        if(contactService.getContact(contactRecord.id()).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        contactService.updateContact(contactRecord);
+
+        return ResponseEntity.ok().build();
+    }
 }
