@@ -2,6 +2,9 @@ package com.entando.springbootagenda.controller;
 
 import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.service.ContactService;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 
@@ -69,20 +72,19 @@ public class ContactController {
                 .body(created);
     }
 
-    @PutMapping("/contacts")
-    public ResponseEntity<String> updateContact(@RequestBody ContactRecord contactRecord) {
-        log.debug("REST request to update contact: {}", contactRecord.name());
+    @PutMapping("/contacts/{id}")
+    public ResponseEntity<ContactRecord> updateContact(@PathVariable(value = "id") final Long id, @RequestBody ContactRecord contact) {
+        log.debug("REST request to update contact: {}", id);
 
-        if(contactRecord.id() == null) {
+        if(id == null || !Objects.equals(id, contact.id())) {
             return ResponseEntity.badRequest().build();
         }
-
-        if(contactService.getContact(contactRecord.id()).isEmpty()) {
+        if(!contactService.exists(id)) {
             return ResponseEntity.notFound().build();
         }
 
-        contactService.updateContact(contactRecord);
+        ContactRecord savedContact = contactService.update(contact);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(savedContact);
     }
 }

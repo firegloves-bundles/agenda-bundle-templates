@@ -170,7 +170,8 @@ class ContactControllerIT extends PostgreSqlTestContainer {
         ContactRecord contactUpdated = new ContactRecord(currentFirstContactId, "new name", "new lastname", "new address", "new phone");
 
         contactMockMvc
-                .perform(put("/api/contacts")
+                .perform(put("/api/contacts/" + currentFirstContactId)
+                        .with(csrf())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(toJSON(contactUpdated))
                         .contentType(MediaType.APPLICATION_JSON)
@@ -191,7 +192,8 @@ class ContactControllerIT extends PostgreSqlTestContainer {
         ContactRecord contactUpdated = new ContactRecord(Long.MAX_VALUE, "new name", "new lastname", "new address", "new phone");
 
         contactMockMvc
-                .perform(put("/api/contacts")
+                .perform(put("/api/contacts/" + Long.MAX_VALUE)
+                        .with(csrf())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(toJSON(contactUpdated))
                         .contentType(MediaType.APPLICATION_JSON)
@@ -205,7 +207,8 @@ class ContactControllerIT extends PostgreSqlTestContainer {
         ContactRecord contactUpdated = new ContactRecord(null, "", "", "", "");
 
         contactMockMvc
-                .perform(put("/api/contacts")
+                .perform(put("/api/contacts/null")
+                        .with(csrf())
                         .accept(MediaType.APPLICATION_JSON)
                         .content(toJSON(contactUpdated))
                         .contentType(MediaType.APPLICATION_JSON)
