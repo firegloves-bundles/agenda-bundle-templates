@@ -149,18 +149,27 @@ class ContactControllerIT extends PostgreSqlTestContainer {
     @Test
     void createContactWithAllFieldsSet() throws Exception {
         contactMockMvc
-                .perform(post("/api/contact").accept(MediaType.APPLICATION_JSON)
+                .perform(post("/api/contact")
                         .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
                         .content(toJSON(new ContactRecord(null, "John", "Doe", "address", "+391234567")))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(jsonPath("$.id").isNotEmpty())
-                .andExpect(jsonPath("$.name").value("John"))
-                .andExpect(jsonPath("$.lastname").value("Doe"))
-                .andExpect(jsonPath("$.address").value("address"))
-                .andExpect(jsonPath("$.phone").value("+391234567"));
+                .andExpect(redirectedUrlPattern("/api/contacts/*"));
+    }
+
+    @Test
+    void createContactWithinvalidData() throws Exception {
+        contactMockMvc
+                .perform(post("/api/contact")
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content("")
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(""));
     }
 
     @Test

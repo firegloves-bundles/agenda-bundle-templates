@@ -6,10 +6,11 @@ import static org.junit.Assert.assertNotNull;
 import com.entando.springbootagenda.model.entity.ContactEntity;
 import com.entando.springbootagenda.model.record.ContactRecord;
 import org.junit.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 public class ContactMapperTest {
 
-    private final ContactMapper mapper = new ContactMapper();
+    private ContactMapper mapper = new ContactMapper();
 
     @Test
     public void testToEntityFull() {
