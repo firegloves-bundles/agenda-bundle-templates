@@ -15,7 +15,8 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "sonar": "sonar-scanner"
   },
   "eslintConfig": {
     "extends": [
@@ -39,6 +40,7 @@
     "@craco/craco": "^7.0.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
+    "sonarqube-scanner": "^3.0.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.4"
   }
