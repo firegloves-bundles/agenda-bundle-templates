@@ -22,9 +22,9 @@
             "publicFolder": "public",
             "category" : "Agenda",
             "commands": {
-                "run": "npm run dev",
-                "build": "npm run build",
-                "pack": "npm run build"
+                "run": "npm install && npm run dev",
+                "build": "npm install && npm run build",
+                "pack": "npm install && npm run build"
             },
             "titles": {
                 "en": "vue-widget-agenda",
@@ -38,7 +38,7 @@
             "buildFolder": "dist",
             "type": "widget",
             "group": "free",
-            "publicFolder": "public",           
+            "publicFolder": "public",
             "category" : "Agenda",
             "titles": {
                 "en": "angular-widget-agenda",
