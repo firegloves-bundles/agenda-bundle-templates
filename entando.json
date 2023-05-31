@@ -4,7 +4,10 @@
             "name": "springboot-agenda",
             "stack": "spring-boot",
             "healthCheckPath": "/actuator/health",
-            "dbms": "postgresql"
+            "dbms": "postgresql",
+            "commands": {
+                "build": "mvn verify --no-transfer-progress"
+            }
         }
     ],
     "microfrontends": [],
