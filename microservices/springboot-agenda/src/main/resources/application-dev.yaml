@@ -14,3 +14,6 @@ spring:
     init:
       continue-on-error: true
       mode: always
+
+# CORS Configurations
+ALLOWED_API_ORIGIN: http://localhost:3000,http://localhost:3001
