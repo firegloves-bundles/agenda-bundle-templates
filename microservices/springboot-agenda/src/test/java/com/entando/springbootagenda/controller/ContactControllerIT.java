@@ -7,10 +7,16 @@ import com.entando.springbootagenda.repository.ContactRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -24,7 +30,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest(classes = {SpringbootAgendaApplication.class})
 @Testcontainers
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration
 class ContactControllerIT extends PostgreSqlTestContainer {
+
+    @MockBean
+    private JwtDecoder jwtDecoder;
 
     @Autowired
     private ContactRepository contactRepository;
@@ -47,6 +58,7 @@ class ContactControllerIT extends PostgreSqlTestContainer {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin",roles={"admin"})
     void getAllUsersShouldReturnTheCurrentOrderedListOfUsersByIdAsc() throws Exception {
         contactRepository.saveAllAndFlush(contactsList);
 
@@ -68,6 +80,7 @@ class ContactControllerIT extends PostgreSqlTestContainer {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin",roles={"admin"})
     void getAllUsersShouldReturnTheCurrentOrderedListOfUsersByNameAsc() throws Exception {
         contactRepository.saveAllAndFlush(contactsList);
 
@@ -89,6 +102,7 @@ class ContactControllerIT extends PostgreSqlTestContainer {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin",roles={"admin"})
     void getUserWithItsIdShouldReturnTheCorrectUser() throws Exception {
         contactRepository.saveAllAndFlush(contactsList);
 
@@ -118,6 +132,7 @@ class ContactControllerIT extends PostgreSqlTestContainer {
 
     @Test
     @Transactional
+    @WithMockUser(username="admin",roles={"admin"})
     void getUserWithId1234ShouldThrowANotFoundException() throws Exception {
         contactRepository.saveAllAndFlush(contactsList);
 

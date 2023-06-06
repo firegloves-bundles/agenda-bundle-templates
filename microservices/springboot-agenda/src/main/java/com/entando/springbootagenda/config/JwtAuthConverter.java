@@ -1,6 +1,7 @@
 package com.entando.springbootagenda.config;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,10 +30,19 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
 
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
-        Collection<GrantedAuthority> authorities = Stream.concat(
-                jwtGrantedAuthoritiesConverter.convert(jwt).stream(),
-                extractResourceRoles(jwt).stream()).collect(Collectors.toSet());
-        return new JwtAuthenticationToken(jwt, authorities, getPrincipalClaimName(jwt));
+        Collection<GrantedAuthority> authorities = new HashSet<>();
+        String principalClaimName = null;
+
+        if (jwt != null) {
+            final Collection<GrantedAuthority> grantedAuthorities = jwtGrantedAuthoritiesConverter.convert(jwt);
+            final Collection<? extends GrantedAuthority> resourceRoles = extractResourceRoles(jwt);
+            authorities = Stream.concat(
+                            grantedAuthorities != null? grantedAuthorities.stream() : Stream.empty(),
+                            resourceRoles != null ? resourceRoles.stream() : Stream.empty())
+                    .collect(Collectors.toSet());
+            principalClaimName = getPrincipalClaimName(jwt);
+        }
+        return new JwtAuthenticationToken(jwt, authorities, principalClaimName);
     }
 
     private String getPrincipalClaimName(Jwt jwt) {
