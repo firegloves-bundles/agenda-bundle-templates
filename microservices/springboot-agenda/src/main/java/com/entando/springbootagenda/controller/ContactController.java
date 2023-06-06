@@ -2,8 +2,10 @@ package com.entando.springbootagenda.controller;
 
 import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.service.ContactService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +25,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/api")
+@SecurityRequirement(name = "agenda_auth")
 public class ContactController {
     private final Logger log = LoggerFactory.getLogger(ContactController.class);
     private final ContactService contactService;
@@ -34,8 +37,7 @@ public class ContactController {
 
     @GetMapping("/contacts")
     @PreAuthorize("hasRole('admin')")
-//    @PreAuthorize("hasAnyRole('admin', 'user')")
-    public ResponseEntity<List<ContactRecord>> getAllContacts(Pageable pageable) {
+    public ResponseEntity<List<ContactRecord>> getAllContacts(@ParameterObject Pageable pageable) {
         log.debug("REST request to get all Contacts");
 
         final Page<ContactRecord> page = contactService.getAllContacts(pageable);
