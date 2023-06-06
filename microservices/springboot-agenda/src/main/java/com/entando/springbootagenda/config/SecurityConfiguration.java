@@ -1,0 +1,43 @@
+package com.entando.springbootagenda.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class SecurityConfiguration {
+
+    private final JwtAuthConverter jwtAuthConverter;
+
+    public SecurityConfiguration(JwtAuthConverter jwtAuthConverter) {
+        this.jwtAuthConverter = jwtAuthConverter;
+    }
+
+    @Bean
+    public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+        return http
+                .cors(cors ->
+                        cors.disable())
+                .authorizeHttpRequests(requests -> requests
+                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/error").anonymous()
+                        .anyRequest().authenticated())
+                .oauth2ResourceServer((oauth2) ->
+                        oauth2.jwt((jwt) ->
+                                jwt.jwtAuthenticationConverter(jwtAuthConverter)))
+                .sessionManagement((session) ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .build();
+    }
+}

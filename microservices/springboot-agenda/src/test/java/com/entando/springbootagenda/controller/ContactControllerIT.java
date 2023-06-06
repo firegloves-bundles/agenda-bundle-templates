@@ -86,4 +86,43 @@ class ContactControllerIT extends PostgreSqlTestContainer {
                 .andExpect(jsonPath("$.[1].address").value("3 Av bridge street"))
                 .andExpect(jsonPath("$.[1].phone").value("+33145326745"));
     }
+
+    @Test
+    @Transactional
+    void getUserWithItsIdShouldReturnTheCorrectUser() throws Exception {
+        contactRepository.saveAllAndFlush(contactsList);
+
+        Long currentFirstContactId = contactsList.get(0).getId();
+        Long currentSecondContactId = contactsList.get(1).getId();
+
+        contactMockMvc
+                .perform(get("/api/contacts/" + currentFirstContactId).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id").value(currentFirstContactId))
+                .andExpect(jsonPath("$.name").value("Jon"))
+                .andExpect(jsonPath("$.lastname").value("doe"))
+                .andExpect(jsonPath("$.address").value("3 Av bridge street"))
+                .andExpect(jsonPath("$.phone").value("+33145326745"));
+
+        contactMockMvc
+                .perform(get("/api/contacts/" + currentSecondContactId).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.id").value(currentSecondContactId))
+                .andExpect(jsonPath("$.name").value("Jane"))
+                .andExpect(jsonPath("$.lastname").value("doe"))
+                .andExpect(jsonPath("$.address").value("7 East Side broke"))
+                .andExpect(jsonPath("$.phone").value("+01545822705"));
+    }
+
+    @Test
+    @Transactional
+    void getUserWithId1234ShouldThrowANotFoundException() throws Exception {
+        contactRepository.saveAllAndFlush(contactsList);
+
+        contactMockMvc
+                .perform(get("/api/contacts/1234").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
 }

@@ -31,6 +31,9 @@ jobs:
         bash .github/functions/utils.sh setComponentVersions -$versionSuffix
         ent bundle build --all --stdout --fail-fast
         cd microservices/springboot-agenda && mvn sonar:sonar --no-transfer-progress && cd ../..
+        cd microfrontends/angular-widget-agenda && ent npm run sonar && cd ../..
+        cd microfrontends/react-widget-agenda && ent npm run sonar && cd ../..
+        cd microfrontends/vue-widget-agenda && ent npm run sonar && cd ../..
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
