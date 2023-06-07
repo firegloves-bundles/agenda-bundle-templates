@@ -1,4 +1,4 @@
-package com.entando.springbootagenda.config;
+package com.entando.springbootagenda.config.jwt;
 
 import java.util.Collection;
 import java.util.HashSet;

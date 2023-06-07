@@ -1,4 +1,4 @@
-package com.entando.springbootagenda.config;
+package com.entando.springbootagenda.config.jwt;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
