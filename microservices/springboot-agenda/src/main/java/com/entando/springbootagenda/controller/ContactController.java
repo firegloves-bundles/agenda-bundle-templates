@@ -41,7 +41,6 @@ public class ContactController {
 
     @GetMapping("/contacts")
     @PreAuthorize("hasRole('admin')")
-//    @PreAuthorize("hasAnyRole('admin', 'user')")
     public ResponseEntity<List<ContactRecord>> getAllContacts(Pageable pageable) {
         log.debug("REST request to get all Contacts");
 

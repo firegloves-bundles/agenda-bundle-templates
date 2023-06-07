@@ -38,4 +38,5 @@ logging:
     org.springframework.security: DEBUG
 
 # CORS Configurations
-ALLOWED_API_ORIGIN: ${CORS_API_ORIGIN:"*"}
+app:
+  allowed-api-origin: ${CORS_API_ORIGIN:"*"}
