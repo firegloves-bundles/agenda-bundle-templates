@@ -18,11 +18,11 @@ public class SecurityConfiguration {
         return http
                 .csrf(cors -> cors.disable())
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(new AntPathRequestMatcher("/api/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/swagger-ui/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/actuator/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/v3/api-docs/**")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/error")).anonymous()
+                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/error").anonymous()
                         .anyRequest().authenticated())
                 .build();
     }
