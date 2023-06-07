@@ -3,7 +3,9 @@ package com.entando.springbootagenda.controller;
 import com.entando.springbootagenda.SpringbootAgendaApplication;
 import com.entando.springbootagenda.config.PostgreSqlTestContainer;
 import com.entando.springbootagenda.model.entity.ContactEntity;
+import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.repository.ContactRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -142,5 +144,107 @@ class ContactControllerIT extends PostgreSqlTestContainer {
                         .with(csrf())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
+    }
+
+    @Test
+    void createContactWithAllFieldsSet() throws Exception {
+        contactMockMvc
+                .perform(post("/api/contact")
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(new ContactRecord(null, "John", "Doe", "address", "+391234567")))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isCreated())
+                .andExpect(redirectedUrlPattern("/api/contacts/*"));
+    }
+
+    @Test
+    void createContactWithinvalidData() throws Exception {
+        contactMockMvc
+                .perform(post("/api/contact")
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content("")
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(content().string(""));
+    }
+
+    @Test
+    @Transactional
+    void updateAContactShouldUpdateTheDatabase() throws Exception {
+        Long currentFirstContactId = contactsList.get(0).getId();
+        ContactRecord contactUpdated = new ContactRecord(currentFirstContactId, "new name", "new lastname", "new address", "new phone");
+
+        contactMockMvc
+                .perform(put("/api/contacts/" + currentFirstContactId)
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isOk());
+
+        ContactEntity contactSavedFromDb =  contactRepository.findOneById(currentFirstContactId).get();
+
+        assertThat(contactSavedFromDb.getName()).isEqualTo("new name");
+        assertThat(contactSavedFromDb.getLastname()).isEqualTo("new lastname");
+        assertThat(contactSavedFromDb.getAddress()).isEqualTo("new address");
+        assertThat(contactSavedFromDb.getPhone()).isEqualTo("new phone");
+    }
+
+    @Test
+    @Transactional
+    void updateAContactWithAnUnknownIdShouldReturnANotFoundCode() throws Exception {
+        ContactRecord contactUpdated = new ContactRecord(Long.MAX_VALUE, "new name", "new lastname", "new address", "new phone");
+
+        contactMockMvc
+                .perform(put("/api/contacts/" + Long.MAX_VALUE)
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @Transactional
+    void updateARecordWithANullIdShouldReturnABadRequestCode() throws Exception {
+        ContactRecord contactUpdated = new ContactRecord(null, "", "", "", "");
+
+        contactMockMvc
+                .perform(put("/api/contacts/null")
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @Transactional
+    void updateARecordWithDifferentIdsABadRequestCode() throws Exception {
+        ContactRecord contactUpdated = new ContactRecord(1L, "", "", "", "");
+
+        contactMockMvc
+                .perform(put("/api/contacts/2")
+                        .with(csrf())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(toJSON(contactUpdated))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isBadRequest());
+    }
+
+    private static String toJSON(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
