@@ -1,5 +1,6 @@
 package com.entando.springbootagenda.config;
 
+import com.entando.springbootagenda.config.jwt.JwtAuthConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
