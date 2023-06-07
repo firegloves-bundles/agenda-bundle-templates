@@ -13,9 +13,6 @@ public class CorsConfig {
     @Value("${ALLOWED_API_ORIGIN}")
     private List<String> allowedApiOrigin;
 
-    @Value("${ALLOWED_APPBUILDER_ORIGIN}")
-    private String allowedAppBuilderOrigin;
-
     @Bean
     public WebMvcConfigurer getCorsConfigurer(){
         return new WebMvcConfigurer() {

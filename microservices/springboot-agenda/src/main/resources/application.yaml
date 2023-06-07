@@ -24,22 +24,18 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:9080/auth/realms/agenda
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI:http://localhost:9080/auth/realms/agenda}
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
 jwt:
   auth:
     converter:
-      resource-id: internal
+      resource-id: ${SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID:internal}
       principal-attribute: preferred_username
 
 logging:
   level:
     org.springframework.security: DEBUG
 
-###
 # CORS Configurations
-#  Use these properties to control which origins can access the external AppBuilder-facing API and the BFF-style API for the Hub MFEs
-##
-ALLOWED_APPBUILDER_ORIGIN: "*"
-ALLOWED_API_ORIGIN:
+ALLOWED_API_ORIGIN: ${CORS_API_ORIGIN:"*"}
