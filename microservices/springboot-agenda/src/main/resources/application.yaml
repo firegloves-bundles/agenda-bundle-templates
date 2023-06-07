@@ -39,4 +39,4 @@ logging:
 
 # CORS Configurations
 app:
-  allowed-api-origin: ${CORS_API_ORIGIN:"*"}
+  allowed-api-origin: "*"
