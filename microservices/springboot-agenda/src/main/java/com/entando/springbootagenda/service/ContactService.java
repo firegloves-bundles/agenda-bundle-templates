@@ -1,10 +1,9 @@
 package com.entando.springbootagenda.service;
 
 import com.entando.springbootagenda.model.record.ContactRecord;
+import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
-import java.util.Optional;
 
 public interface ContactService {
 
@@ -13,4 +12,10 @@ public interface ContactService {
     Optional<ContactRecord> getContact(Long id);
 
     void delete(Long id);
+
+    ContactRecord save(ContactRecord contact);
+
+    ContactRecord update(ContactRecord contactRecord);
+
+    boolean exists(Long id);
 }
