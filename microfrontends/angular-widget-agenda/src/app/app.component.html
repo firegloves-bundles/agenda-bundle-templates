@@ -1,6 +1,10 @@
-<!-- NOTE: data-theme is for propagate the css variables theme through the shadow dom -->
+<div class="w-full green-header"></div>
 <div data-theme="light">
   <app-container>
+    <div class="app-header w-full flex">
+      <h3 class="flex-auto">Users Agenda</h3>
+      <app-modal buttonText="ADD USER" actionText="Close" title="Add New User" class="flex-auto"></app-modal>
+    </div>
     <app-table></app-table>
     <app-modal buttonText="Click Me" actionText="Close">
       Content

@@ -1,9 +1,28 @@
 <label for="my-modal" class="btn">{{ buttonText }}</label>
-<input type="checkbox" id="my-modal" class="modal-toggle" />
+<input type="checkbox" id="my-modal" class="modal-toggle"/>
 <div class="modal">
   <div class="modal-box">
     <h3 class="font-bold text-lg">{{ title }}</h3>
     <ng-content></ng-content>
+
+    <section class="listing-apply">
+      <form [formGroup]="contactForm" (submit)="saveContact()">
+        <label for="first-name">Name</label>
+        <input id="first-name" type="text" formControlName="name">
+
+        <label for="last-name">Last name</label>
+        <input id="last-name" type="text" formControlName="lastName">
+
+        <label for="address">Address</label>
+        <input id="address" type="text" formControlName="address">
+
+        <label for="phone">Phone</label>
+        <input id="phone" type="text" formControlName="phoneNumber">
+
+        <button type="submit" class="primary">Apply now</button>
+      </form>
+    </section>
+
     <div class="modal-action">
       <label for="my-modal" class="btn">{{ actionText }}</label>
     </div>

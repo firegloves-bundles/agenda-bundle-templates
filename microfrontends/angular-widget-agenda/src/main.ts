@@ -1,6 +1,7 @@
 import { createCustomElement } from '@angular/elements';
 import { createApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
+import {HttpClientModule} from "@angular/common/http";
 
 (async () => {
   const app = await createApplication({

@@ -1,20 +1,22 @@
 <div class="overflow-x-auto">
-  <table class="table w-full mb-8">
-    <!-- head -->
+  <table class="table">
     <thead>
       <tr>
         <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>NAME</th>
+        <th>LAST NAME</th>
+        <th>ADDRESS</th>
+        <th>PHONE NUMBER</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of data">
-        <th>{{item.id}}</th>
-        <td>{{item.name}}</td>
-        <td>{{item.job}}</td>
-        <td>{{item.color}}</td>
+      <tr *ngFor="let contact of contactList">
+        <th>{{ contact.id }}</th>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.lastName }}</td>
+        <td>{{ contact.address }}</td>
+        <td>{{ contact.phoneNumber }}</td>
+        <td></td>
       </tr>
     </tbody>
   </table>
