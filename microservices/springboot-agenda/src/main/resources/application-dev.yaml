@@ -16,4 +16,5 @@ spring:
       mode: always
 
 # CORS Configurations
-ALLOWED_API_ORIGIN: http://localhost:3000,http://localhost:3001
+app:
+  allowed-api-origin: http://localhost:3000,http://localhost:3001
