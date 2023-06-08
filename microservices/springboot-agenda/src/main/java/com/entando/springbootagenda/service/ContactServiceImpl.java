@@ -43,7 +43,7 @@ public class ContactServiceImpl implements ContactService {
     public ContactRecord save(ContactRecord contact) {
         ContactEntity entity = contactMapper.toEntity(contact);
         ContactEntity saved = contactRepository.save(entity);
-        return new ContactRecord(saved);
+        return  contactMapper.toRecord(saved);
     }
 
     @Override

@@ -15,7 +15,11 @@ public class ContactMapper {
     }
 
     public ContactRecord toRecord(ContactEntity entity) {
-        return new ContactRecord(entity);
+        return new ContactRecord(entity.getId(),
+                entity.getName(),
+                entity.getLastname(),
+                entity.getAddress(),
+                entity.getPhone());
     }
 
 }
