@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 public class ContactMapperTest {
 
-    private ContactMapper mapper = new ContactMapper();
+    private final ContactMapper mapper = new ContactMapper();
 
     @Test
     public void testToEntityFull() {

@@ -2,13 +2,11 @@ package com.entando.springbootagenda.controller;
 
 import com.entando.springbootagenda.model.record.ContactRecord;
 import com.entando.springbootagenda.service.ContactService;
-
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springdoc.core.annotations.ParameterObject;
