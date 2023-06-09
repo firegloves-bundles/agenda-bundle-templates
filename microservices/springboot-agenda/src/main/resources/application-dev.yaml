@@ -15,6 +15,12 @@ spring:
       continue-on-error: true
       mode: always
 
+# Swagger/OpenAPI configurations
+springdoc:
+  swagger-ui:
+    oauth:
+      client-secret: internal
+
 # CORS Configurations
 app:
   allowed-api-origin: http://localhost:3000,http://localhost:3001
