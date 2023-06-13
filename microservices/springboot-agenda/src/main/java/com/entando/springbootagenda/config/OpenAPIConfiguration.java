@@ -13,8 +13,6 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 @SecurityScheme(name = "agenda_auth", type = SecuritySchemeType.OAUTH2,
         flows = @OAuthFlows(authorizationCode = @OAuthFlow(
                 authorizationUrl = "${springdoc.oauth-flow.authorizationUrl}",
-                tokenUrl = "${springdoc.oauth-flow.tokenUrl}",
-                scopes = { @OAuthScope(name = "read", description = "read scope"),
-                        @OAuthScope(name = "write", description = "write scope") }
+                tokenUrl = "${springdoc.oauth-flow.tokenUrl}"
         )))
 public class OpenAPIConfiguration { }
