@@ -3,6 +3,7 @@ package com.entando.springbootagenda.config;
 import com.entando.springbootagenda.config.jwt.JwtAuthConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,6 +27,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable()) //NOSONAR
                 .authorizeHttpRequests(requests -> requests
+                        .requestMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
@@ -34,7 +36,7 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwt ->
-                                        jwt.jwtAuthenticationConverter(jwtAuthConverter)))
+                                jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
