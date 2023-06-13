@@ -46,8 +46,8 @@ springdoc:
       client-secret:
       use-pkce-with-authorization-code-grant: true
   oauth-flow:
-    authorizationUrl: ${DEFAULT_SSO_IN_NAMESPACE_SERVICE_PORT_8080_TCP:http://localhost:9080}/auth/realms/agenda/protocol/openid-connect/auth
-    tokenUrl: ${DEFAULT_SSO_IN_NAMESPACE_SERVICE_PORT_8080_TCP:http://localhost:9080}/auth/realms/agenda/protocol/openid-connect/token
+    authorizationUrl: ${KEYCLOAK_AUTH_URL:http://localhost:9080/auth}/realms/${KEYCLOAK_REALM:agenda}/protocol/openid-connect/auth
+    tokenUrl: ${KEYCLOAK_AUTH_URL:http://localhost:9080/auth}/realms/${KEYCLOAK_REALM:agenda}/protocol/openid-connect/token
 
 
 # CORS Configurations
