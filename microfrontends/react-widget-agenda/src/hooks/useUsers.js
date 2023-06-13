@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useKeycloak } from "../auth/Keycloak";
 import { fetchUsers } from "../api/users";
 
-export function useUsers(config) {
+export function useUsers(config, users, setUsers) {
   const [isLoading, setLoading] = useState(true)
-  const [users, setUsers] = useState([]);
   const keycloak = useKeycloak();
 
   useEffect(() => {
@@ -14,15 +13,15 @@ export function useUsers(config) {
       } else {
         const request = async () => {
           const users = await fetchUsers(config, keycloak.token);
-          
+
           setLoading(false);
-          setUsers(users);
+          setUsers(users.data);
         };
 
         request();
       }
     }
-  }, [keycloak.authenticated, keycloak.token]);
+  }, [config, keycloak, setUsers]);
 
   return { isLoading, users };
 }

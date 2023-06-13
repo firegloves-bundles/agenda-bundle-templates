@@ -25,7 +25,7 @@
             "group": "free",
             "version": "0.0.1",
             "publicFolder": "public",
-            "category" : "Agenda",
+            "category": "Agenda",
             "commands": {
                 "run": "npm install && npm run dev",
                 "build": "npm install && npm run build",
@@ -44,7 +44,7 @@
             "type": "widget",
             "group": "free",
             "publicFolder": "public",
-            "category" : "Agenda",
+            "category": "Agenda",
             "titles": {
                 "en": "angular-widget-agenda",
                 "it": "angular-widget-agenda"
@@ -57,11 +57,18 @@
             "type": "widget",
             "group": "free",
             "publicFolder": "public",
-            "category" : "Agenda",
+            "category": "Agenda",
             "titles": {
                 "en": "react-widget-agenda",
                 "it": "react-widget-agenda"
-            }
+            },
+            "apiClaims": [
+                {
+                    "name": "springboot-agenda-api",
+                    "type": "internal",
+                    "serviceName": "springboot-agenda"
+                }
+            ]
         }
     ],
     "svc": [
