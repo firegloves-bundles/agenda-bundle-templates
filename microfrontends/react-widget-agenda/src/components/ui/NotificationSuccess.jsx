@@ -1,5 +1,5 @@
-import {Button} from 'react-daisyui';
 import * as PropTypes from 'prop-types';
+import {Button} from 'react-daisyui';
 
 const NotificationSuccess = ({alert, onClick}) => {
     return <div className='alert alert-success flex items-start'>

@@ -1,5 +1,5 @@
-import {Button} from 'react-daisyui';
 import * as PropTypes from 'prop-types';
+import {Button} from 'react-daisyui';
 
 const NotificationError = ({alert, onClick}) => {
     return <div className='alert alert-error flex items-start'>

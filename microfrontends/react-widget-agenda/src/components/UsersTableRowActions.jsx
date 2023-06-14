@@ -1,9 +1,8 @@
-import * as React from 'react';
-import {useState} from 'react';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown} from 'react-daisyui';
 import DeleteUserModal from './DeleteUserModal';
 import UserEditModal from './UserEditModal';
-import PropTypes from 'prop-types';
 import {deleteUser} from '../api/users';
 import {useKeycloak} from '../auth/Keycloak';
 

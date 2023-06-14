@@ -1,12 +1,11 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import * as yup from 'yup';
+import PropTypes from 'prop-types';
 import {useForm} from 'react-hook-form';
 import {Button, Input, Modal} from 'react-daisyui'
 import {yupResolver} from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import {useState} from 'react';
 import {useKeycloak} from '../auth/Keycloak';
 import {postUser} from '../api/users';
-import PropTypes from 'prop-types';
 import UserForm from './ui/UserForm';
 
 const schema = yup.object({

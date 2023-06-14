@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import {Toast} from 'react-daisyui';
 import NotificationSuccess from './NotificationSuccess';
 import NotificationError from './NotificationError';
-import PropTypes from 'prop-types';
 
 const Notifications = ({alerts, handleRemoveToast}) => {
     return <Toast>

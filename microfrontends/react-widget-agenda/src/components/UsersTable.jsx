@@ -1,7 +1,7 @@
 import * as React from 'react';
-import UsersTableRowActions from './UsersTableRowActions';
-import {Table} from 'react-daisyui';
 import PropTypes from 'prop-types';
+import {Table} from 'react-daisyui';
+import UsersTableRowActions from './UsersTableRowActions';
 
 const UsersTable = ({config, handleAddToast, updateUsersTable, users}) => {
     const sortedUsers = users.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));

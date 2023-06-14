@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { useKeycloak } from "../auth/Keycloak";
-import { fetchUsers } from "../api/users";
+import { useState, useEffect } from 'react';
+import { useKeycloak } from '../auth/Keycloak';
+import { fetchUsers } from '../api/users';
 
 export function useUsers(config, users, setUsers) {
   const [isLoading, setLoading] = useState(true)

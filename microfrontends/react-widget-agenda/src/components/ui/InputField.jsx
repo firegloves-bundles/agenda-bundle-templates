@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Controller} from 'react-hook-form';
 import * as PropTypes from 'prop-types';
+import {Controller} from 'react-hook-form';
 
 const InputField = ({name, label, control, errors, render}) => {
     return (

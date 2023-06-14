@@ -1,7 +1,7 @@
-import InputField from "./InputField";
-import {Button, Modal} from "react-daisyui";
-import PropTypes from "prop-types";
-import * as React from "react";
+import InputField from './InputField';
+import {Button, Modal} from 'react-daisyui';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const UserForm = ({control, errors, onClickClose, onSubmit, render}) => {
     return <form onSubmit={onSubmit}>
