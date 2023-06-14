@@ -1,11 +1,14 @@
-import { createCustomElement } from '@angular/elements';
-import { createApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import {createCustomElement} from '@angular/elements';
+import {createApplication} from '@angular/platform-browser';
+import {AppComponent} from './app/app.component';
 import {HttpClientModule} from "@angular/common/http";
+import {importProvidersFrom} from "@angular/core";
 
 (async () => {
   const app = await createApplication({
-    providers: []
+    providers: [
+      importProvidersFrom(HttpClientModule)
+    ]
   });
 
   const element = createCustomElement(AppComponent, {
@@ -13,4 +16,8 @@ import {HttpClientModule} from "@angular/common/http";
   });
 
   customElements.define('angular-widget-agenda', element);
+
+
 })();
+
+
