@@ -35,18 +35,18 @@ const UserEditModal = ({user, visible, toggleVisible, config, handleAddToast, up
     });
 
     const onSubmit = async (data) => {
-        await putUser(config, keycloak.token, user.id, data).then(r => {
-                if (r.responseType === 'OK') {
-                    handleAddToast(`User ${user.id} edited!`, 'success');
-                    updateUsersTable(r.data, 'edit');
-                    reset();
-                } else {
-                    handleAddToast(`Add contact failed!`, 'error');
-                }
+        try {
+            const res = await putUser(config, keycloak.token, user.id, data);
+            if (res.responseType === 'OK') {
+                handleAddToast(`User ${user.id} edited!`, 'success');
+                updateUsersTable(res.data, 'edit');
+                reset();
+            } else {
+                handleAddToast(`Add contact failed!`, 'error');
             }
-        ).catch(() => {
+        } catch (error) {
             handleAddToast(`Add contact failed!`, 'error');
-        });
+        };
         toggleVisible();
     }
 

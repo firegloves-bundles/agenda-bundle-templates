@@ -45,19 +45,22 @@ const UserAddModal = ({config, handleAddToast, updateUsersTable}) => {
 
     const onSubmit = async (data) => {
         toggleVisible();
-        await postUser(config, keycloak.token, data).then(r => {
-                if (r.responseType === 'OK') {
-                    handleAddToast(`User ${r.data.id} ${r.data.name} ${r.data.lastname} added!`, 'success');
-                    updateUsersTable(r.data, 'add');
-                    reset();
-                } else {
-                    handleAddToast(`Add contact failed!`, 'error');
-                }
+        try {
+            const res = await postUser(config, keycloak.token, data);
+
+            if (res.responseType === 'OK') {
+                handleAddToast(`User ${res.data.id} ${res.data.name} ${res.data.lastname} added!`, 'success');
+                updateUsersTable(res.data, 'add');
+                reset();
+            } else {
+                handleAddToast(`Add contact failed!`, 'error');
             }
-        ).catch(()=>{
+        }
+        catch(error){
             handleAddToast(`Add contact failed!`, 'error');
-        });
+        };
     }
+
     return (
         <div className="float-right">
             <Button onClick={toggleVisible} className="mb-3 mt-3">Add User</Button>

@@ -4,39 +4,17 @@ import {deleteUser} from '../api/users';
 import {useKeycloak} from '../auth/Keycloak';
 import PropTypes from 'prop-types';
 
-const DeleteUserModal = ({visible, toggleVisible, userId, handleAddToast, updateUsersTable, config}) => {
-    const keycloak = useKeycloak();
-
-//    const {handleSubmit} = useForm({});
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        await deleteUser(config, keycloak.token, userId).then(r => {
-                if (r.responseType === 'OK') {
-                    handleAddToast(`Contact ${userId} deleted!`, 'success');
-                    updateUsersTable({'id': userId}, 'delete');
-                } else {
-                    handleAddToast(`Delete contact ${userId} failed!`, 'error');
-                }
-            }
-        ).catch(()=>{
-            handleAddToast(`Delete contact ${userId} failed!`, 'error');
-        });
-        toggleVisible();
-    }
-
+const DeleteUserModal = ({visible, toggleVisible, userId, handleConfirmDelete}) => {
     return (
         <Modal open={visible}>
             <Modal.Header className="font-bold">
                 Do you want to delete the user {userId}?
             </Modal.Header>
             <Modal.Body>
-                <form onSubmit={handleSubmit}>
-                    <Modal.Actions className="place-content-between">
-                        <div className='btn' onClick={toggleVisible}>Cancel</div>
-                        <Button>Confirm</Button>
-                    </Modal.Actions>
-                </form>
+                <Modal.Actions className="place-content-between">
+                    <div className='btn' onClick={toggleVisible}>Cancel</div>
+                    <Button onClick={handleConfirmDelete}>Confirm</Button>
+                </Modal.Actions>
             </Modal.Body>
         </Modal>
     );
@@ -46,9 +24,7 @@ DeleteUserModal.propTypes = {
     visible: PropTypes.bool.isRequired,
     toggleVisible: PropTypes.func.isRequired,
     userId: PropTypes.number.isRequired,
-    handleAddToast: PropTypes.func.isRequired,
-    updateUsersTable: PropTypes.func.isRequired,
-    config: PropTypes.any.isRequired
+    handleConfirmDelete: PropTypes.func.isRequired
 }
 
 export default DeleteUserModal;
