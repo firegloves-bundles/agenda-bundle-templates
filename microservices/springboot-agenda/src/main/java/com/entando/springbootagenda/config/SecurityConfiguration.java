@@ -16,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
+    public static final String AGENDA_BUNDLE_API = "/api/**";
     public final JwtAuthConverter jwtAuthConverter;
 
     public SecurityConfiguration(JwtAuthConverter jwtAuthConverter) {
@@ -27,8 +28,9 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable()) //NOSONAR
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
-                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers(HttpMethod.OPTIONS, AGENDA_BUNDLE_API).permitAll()
+                        .requestMatchers(HttpMethod.GET, AGENDA_BUNDLE_API).permitAll()
+                        .requestMatchers(AGENDA_BUNDLE_API).authenticated()
                         .requestMatchers("/swagger-ui/**").permitAll()
                         .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/v3/api-docs/**").permitAll()
