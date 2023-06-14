@@ -4,10 +4,10 @@ import {Button, Input, Modal} from 'react-daisyui'
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import {useState} from 'react';
-import InputField from './ui/InputField';
 import {useKeycloak} from '../auth/Keycloak';
 import {postUser} from '../api/users';
 import PropTypes from 'prop-types';
+import UserForm from './ui/UserForm';
 
 const schema = yup.object({
     name: yup.string().required(),
@@ -16,13 +16,12 @@ const schema = yup.object({
     address: yup.string().required()
 }).required();
 
-
 const UserAddModal = ({config, handleAddToast, updateUsersTable}) => {
     const [visible, setVisible] = useState(false);
     const keycloak = useKeycloak();
     const toggleVisible = () => {
-        reset();
         setVisible(!visible);
+        reset();
     }
 
     const {
@@ -39,19 +38,25 @@ const UserAddModal = ({config, handleAddToast, updateUsersTable}) => {
         resolver: yupResolver(schema)
     });
 
-
-    const onSubmit = (data) => {
+    const onClickClose = () => {
         toggleVisible();
-        postUser(config, keycloak.token, data).then(r => {
+        reset();
+    }
+
+    const onSubmit = async (data) => {
+        toggleVisible();
+        await postUser(config, keycloak.token, data).then(r => {
                 if (r.responseType === 'OK') {
                     handleAddToast(`User ${r.data.id} ${r.data.name} ${r.data.lastname} added!`, 'success');
-                    reset(); // reset the form after submit;
                     updateUsersTable(r.data, 'add');
+                    reset();
                 } else {
                     handleAddToast(`Add contact failed!`, 'error');
                 }
             }
-        );
+        ).catch(()=>{
+            handleAddToast(`Add contact failed!`, 'error');
+        });
     }
     return (
         <div className="float-right">
@@ -61,28 +66,11 @@ const UserAddModal = ({config, handleAddToast, updateUsersTable}) => {
                     Add User
                 </Modal.Header>
                 <Modal.Body>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <InputField name='name' label='First Name'
-                                    control={control}
-                                    render={({field}) => <Input {...field} />}
-                                    errors={errors}/>
-                        <InputField name='lastname' label='Last Name'
-                                    control={control}
-                                    render={({field}) => <Input {...field} />}
-                                    errors={errors}/>
-                        <InputField name='address' label='Address'
-                                    control={control}
-                                    render={({field}) => <Input {...field} />}
-                                    errors={errors}/>
-                        <InputField name='phone' label='Phone'
-                                    control={control}
-                                    render={({field}) => <Input {...field} />}
-                                    errors={errors}/>
-                        <Modal.Actions className='place-content-between'>
-                            <div className='btn' onClick={toggleVisible}>Close</div>
-                            <Button className='btn btn-primary'>Submit</Button>
-                        </Modal.Actions>
-                    </form>
+                    <UserForm onSubmit={handleSubmit(onSubmit)}
+                              control={control}
+                              render={({field}) => <Input {...field} />}
+                              errors={errors}
+                              onClickClose={onClickClose}/>
                 </Modal.Body>
             </Modal>
         </div>

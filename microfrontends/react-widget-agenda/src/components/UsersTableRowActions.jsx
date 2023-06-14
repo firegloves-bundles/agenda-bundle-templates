@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 
 
 const UsersTableRowActions = ({config, handleAddToast, updateUsersTable, user}) => {
-    const [visible, setVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-    function toggleVisible() {
-        setVisible(!visible);
+    function toggleEditModalVisible() {
+        setEditModalVisible(!editModalVisible);
     }
 
     function toggleDeleteModalVisible() {
@@ -37,12 +37,12 @@ const UsersTableRowActions = ({config, handleAddToast, updateUsersTable, user}) 
                     </svg>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className='dropdown-content menu p-2 shadow bg-base-100 rounded-box"'>
-                    <Dropdown.Item onClick={toggleVisible}>Edit</Dropdown.Item>
+                    <Dropdown.Item onClick={toggleEditModalVisible}>Edit</Dropdown.Item>
                     <Dropdown.Item onClick={toggleDeleteModalVisible}>Delete</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            <UserEditModal visible={visible}
-                           toggleVisible={toggleVisible}
+            <UserEditModal visible={editModalVisible}
+                           toggleVisible={toggleEditModalVisible}
                            user={user}
                            config={config}
                            handleAddToast={handleAddToast}

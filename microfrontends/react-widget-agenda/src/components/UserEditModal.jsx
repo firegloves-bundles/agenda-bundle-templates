@@ -1,12 +1,12 @@
 import * as React from 'react';
 import {useForm} from 'react-hook-form';
-import {Button, Input, Modal} from 'react-daisyui'
+import {Input, Modal} from 'react-daisyui'
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import InputField from './ui/InputField';
 import {putUser} from '../api/users';
 import {useKeycloak} from '../auth/Keycloak';
 import PropTypes from 'prop-types';
+import UserForm from './ui/UserForm';
 
 const schema = yup.object({
     name: yup.string().required(),
@@ -34,18 +34,25 @@ const UserEditModal = ({user, visible, toggleVisible, config, handleAddToast, up
         resolver: yupResolver(schema)
     });
 
-    const onSubmit = (data) => {
-        putUser(config, keycloak.token, user.id, data).then(r => {
+    const onSubmit = async (data) => {
+        await putUser(config, keycloak.token, user.id, data).then(r => {
                 if (r.responseType === 'OK') {
                     handleAddToast(`User ${user.id} edited!`, 'success');
                     updateUsersTable(r.data, 'edit');
-                    reset(); // reset after form submit);
+                    reset();
                 } else {
                     handleAddToast(`Add contact failed!`, 'error');
                 }
             }
-        );
+        ).catch(() => {
+            handleAddToast(`Add contact failed!`, 'error');
+        });
         toggleVisible();
+    }
+
+    const onClickClose = () => {
+        toggleVisible();
+        reset();
     }
 
     return (
@@ -54,28 +61,11 @@ const UserEditModal = ({user, visible, toggleVisible, config, handleAddToast, up
                 Edit User {user.id}
             </Modal.Header>
             <Modal.Body>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <InputField name='name' label='First Name'
-                                control={control}
-                                render={({field}) => <Input {...field} />}
-                                errors={errors}/>
-                    <InputField name='lastname' label='Last Name'
-                                control={control}
-                                render={({field}) => <Input {...field} />}
-                                errors={errors}/>
-                    <InputField name='address' label='Address'
-                                control={control}
-                                render={({field}) => <Input {...field} />}
-                                errors={errors}/>
-                    <InputField name='phone' label='Phone'
-                                control={control}
-                                render={({field}) => <Input {...field} maxLength={20}/>}
-                                errors={errors}/>
-                    <Modal.Actions className='place-content-between'>
-                        <div className='btn' onClick={toggleVisible}>Close</div>
-                        <Button className='btn btn-primary'>Submit</Button>
-                    </Modal.Actions>
-                </form>
+                <UserForm onSubmit={handleSubmit(onSubmit)}
+                          control={control}
+                          render={({field}) => <Input {...field} />}
+                          errors={errors}
+                          onClickClose={onClickClose}/>
             </Modal.Body>
         </Modal>
     );

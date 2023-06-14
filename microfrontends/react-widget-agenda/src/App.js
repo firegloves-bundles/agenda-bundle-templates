@@ -9,6 +9,7 @@ import EmptyAgenda from "./components/EmptyAgenda";
 
 
 function App({config}) {
+    const [notificationId, setNotificationId] = useState(0);
     const [users, setUsers] = useState([]);
     const {isLoading} = useUsers(config, users, setUsers);
     const [alerts, setAlerts] = useState([]);
@@ -17,10 +18,12 @@ function App({config}) {
         setAlerts((alerts) => [
             ...alerts,
             {
+                id: notificationId,
                 text: text,
                 status: status
             },
         ])
+        setNotificationId(notificationId+1);
     }
 
     const handleRemoveToast = (index) => {

@@ -7,9 +7,9 @@ const Notifications = ({alerts, handleRemoveToast}) => {
     return <Toast>
         {alerts.map((alert, index) => (
             alert.status === 'error' ?
-                <NotificationError key={index} alert={alert} onClick={() => handleRemoveToast(index)}/>
+                <NotificationError key={alert.id} alert={alert} onClick={() => handleRemoveToast(index)}/>
                 :
-                <NotificationSuccess key={index} alert={alert} onClick={() => handleRemoveToast(index)}/>
+                <NotificationSuccess key={alert.id} alert={alert} onClick={() => handleRemoveToast(index)}/>
         ))}
     </Toast>
 }
@@ -17,6 +17,7 @@ const Notifications = ({alerts, handleRemoveToast}) => {
 Notifications.propTypes = {
     alerts: PropTypes.arrayOf(
         PropTypes.shape({
+                id: PropTypes.number.isRequired,
                 text: PropTypes.string.isRequired,
                 status: PropTypes.string.isRequired,
             }

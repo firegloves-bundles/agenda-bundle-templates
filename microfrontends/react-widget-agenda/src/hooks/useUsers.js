@@ -13,7 +13,6 @@ export function useUsers(config, users, setUsers) {
       } else {
         const request = async () => {
           const users = await fetchUsers(config, keycloak.token);
-
           setLoading(false);
           setUsers(users.data);
         };

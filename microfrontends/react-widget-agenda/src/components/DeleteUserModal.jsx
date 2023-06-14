@@ -10,8 +10,8 @@ const DeleteUserModal = ({visible, toggleVisible, userId, handleAddToast, update
 
     const {handleSubmit} = useForm({});
 
-    const onSubmit = () => {
-        deleteUser(config, keycloak.token, userId).then(r => {
+    const onSubmit = async () => {
+        await deleteUser(config, keycloak.token, userId).then(r => {
                 if (r.responseType === 'OK') {
                     handleAddToast(`Contact ${userId} deleted!`, 'success');
                     updateUsersTable({'id': userId}, 'delete');
@@ -19,7 +19,10 @@ const DeleteUserModal = ({visible, toggleVisible, userId, handleAddToast, update
                     handleAddToast(`Delete contact ${userId} failed!`, 'error');
                 }
             }
-        );
+
+        ).catch(()=>{
+            handleAddToast(`Delete contact ${userId} failed!`, 'error');
+        });
         toggleVisible();
     }
 
