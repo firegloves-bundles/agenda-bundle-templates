@@ -1,7 +1,5 @@
 import * as React from 'react';
 import {Button, Modal} from 'react-daisyui'
-import {deleteUser} from '../api/users';
-import {useKeycloak} from '../auth/Keycloak';
 import PropTypes from 'prop-types';
 
 const DeleteUserModal = ({visible, toggleVisible, userId, handleConfirmDelete}) => {
