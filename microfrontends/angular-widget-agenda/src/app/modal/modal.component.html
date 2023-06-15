@@ -7,23 +7,24 @@
 
     <section class="listing-apply">
       <form [formGroup]="contactForm" (submit)="saveContact()">
-        <label for="first-name">Name</label>
-        <input id="first-name" type="text" formControlName="name">
+        <label for="first-name" class="label">Name</label>
+        <input id="first-name" type="text" formControlName="name" class="input w-full max-w-xs">
 
-        <label for="last-name">Last name</label>
-        <input id="last-name" type="text" formControlName="lastName">
+        <label for="last-name" class="label">Last name</label>
+        <input id="last-name" type="text" formControlName="lastname" class="input w-full max-w-xs">
 
-        <label for="address">Address</label>
-        <input id="address" type="text" formControlName="address">
+        <label for="address" class="label">Address</label>
+        <input id="address" type="text" formControlName="address" class="input w-full max-w-xs">
 
-        <label for="phone">Phone</label>
-        <input id="phone" type="text" formControlName="phoneNumber">
+        <label for="phone" class="label">Phone</label>
+        <input id="phone" type="text" formControlName="phone" class="input w-full max-w-xs">
 
         <button type="submit" class="primary">Apply now</button>
       </form>
     </section>
 
     <div class="modal-action">
+      <label for="my-modal" class="btn bg-accent">{{ actionText }}</label>
       <label for="my-modal" class="btn">{{ actionText }}</label>
     </div>
   </div>

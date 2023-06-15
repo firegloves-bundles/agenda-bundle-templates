@@ -3,6 +3,9 @@ import {createApplication} from '@angular/platform-browser';
 import {AppComponent} from './app/app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {importProvidersFrom} from "@angular/core";
+import 'tailwindcss/base.css';
+import 'tailwindcss/components.css';
+import 'tailwindcss/utilities.css';
 
 (async () => {
   const app = await createApplication({

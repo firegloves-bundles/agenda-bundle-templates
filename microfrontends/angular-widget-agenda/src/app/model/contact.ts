@@ -1,15 +1,15 @@
 export class Contact {
     id: number;
     name: string;
-    lastName: string;
+    lastname: string;
     address: string;
-    phoneNumber: string;
+    phone: string;
 
-    constructor(id: number, name: string, lastName: string, address: string, phoneNumber: string) {
+    constructor(id: number, name: string, lastname: string, address: string, phone: string) {
         this.id = id;
         this.name = name;
-        this.lastName = lastName;
+        this.lastname = lastname;
         this.address = address;
-        this.phoneNumber = phoneNumber;
+        this.phone = phone;
     }
 }

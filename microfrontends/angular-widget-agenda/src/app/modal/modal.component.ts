@@ -20,17 +20,17 @@ export class ModalComponent {
 
   contactForm = new FormGroup({
     name: new FormControl(''),
-    lastName: new FormControl(''),
+    lastname: new FormControl(''),
     address: new FormControl(''),
-    phoneNumber: new FormControl('')
+    phone: new FormControl('')
   });
 
   saveContact() {
     this.contactService.saveContact(
         this.contactForm.value.name ?? '',
-        this.contactForm.value.lastName ?? '',
+        this.contactForm.value.lastname ?? '',
         this.contactForm.value.address ?? '',
-        this.contactForm.value.phoneNumber ?? ''
+        this.contactForm.value.phone ?? ''
     );
   }
 }
