@@ -11,12 +11,12 @@ import {Contact} from "../model/contact";
 })
 export class TableComponent {
 
-    contactList: Contact[] = [];
-
-    constructor(private contactService: ContactService) {
-    }
-
-    ngOnInit(): void {
-        this.contactService.getAllContacts().subscribe((data: Contact[]) => this.contactList = data);
-    }
+    // contactList: Contact[] = [];
+    //
+    // constructor(private contactService: ContactService) {
+    // }
+    //
+    // ngOnInit(): void {
+    //     this.contactService.getAllContacts().subscribe((data: Contact[]) => this.contactList = data);
+    // }
 }

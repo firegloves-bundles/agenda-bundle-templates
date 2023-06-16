@@ -1,36 +1,41 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ContactService} from "../services/contact.service";
 import {HttpClientModule} from "@angular/common/http";
 
 @Component({
-  selector: 'app-modal',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './modal.component.html',
+    selector: 'app-modal',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+    templateUrl: './modal.component.html',
 })
 export class ModalComponent {
 
-  @Input() buttonText = 'Open Modal'
-  @Input() actionText = 'Yay!'
-  @Input() title = 'Welcome'
+    @Input() buttonText = 'Open Modal'
+    @Input() actionText = 'Yay!'
+    @Input() title = 'Welcome'
 
-  constructor(private contactService: ContactService) { }
+    constructor(private contactService: ContactService) {
+    }
 
-  contactForm = new FormGroup({
-    name: new FormControl(''),
-    lastname: new FormControl(''),
-    address: new FormControl(''),
-    phone: new FormControl('')
-  });
+    contactForm = new FormGroup({
+        name: new FormControl(''),
+        lastname: new FormControl(''),
+        address: new FormControl(''),
+        phone: new FormControl('')
+    });
 
-  saveContact() {
-    this.contactService.saveContact(
-        this.contactForm.value.name ?? '',
-        this.contactForm.value.lastname ?? '',
-        this.contactForm.value.address ?? '',
-        this.contactForm.value.phone ?? ''
-    );
-  }
+    saveContact() {
+        this.contactService.saveContact(
+            this.contactForm.value.name ?? '',
+            this.contactForm.value.lastname ?? '',
+            this.contactForm.value.address ?? '',
+            this.contactForm.value.phone ?? ''
+        ).subscribe(c => {
+            console.log('aoiaoaoaoaoaoaoao', c);
+            this.concactList.push(c)
+            console.log('aoiaoaoaoaoaoaoao', this.concactList);
+        });
+    }
 }
