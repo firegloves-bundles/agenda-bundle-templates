@@ -31,7 +31,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController()
 @RequestMapping("/api")
-@SecurityRequirement(name = "agenda_auth")
 public class ContactController {
     private final Logger log = LoggerFactory.getLogger(ContactController.class);
     private final ContactService contactService;
@@ -42,7 +41,6 @@ public class ContactController {
     }
 
     @GetMapping("/contacts")
-    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<List<ContactRecord>> getAllContacts(@ParameterObject Pageable pageable) {
         log.debug("REST request to get all Contacts");
 
@@ -54,7 +52,6 @@ public class ContactController {
     }
 
     @GetMapping("/contacts/{id}")
-    @PreAuthorize("hasRole('admin')")
     public ResponseEntity<ContactRecord> getContact(@PathVariable Long id) {
         log.debug("REST request to get the contact with id {}", id);
 
@@ -66,6 +63,7 @@ public class ContactController {
 
     @DeleteMapping("/contacts/{id}")
     @PreAuthorize("hasRole('admin')")
+    @SecurityRequirement(name = "agenda_auth")
     public ResponseEntity<String> deleteContact(@PathVariable Long id) {
         log.debug("REST request to delete contact: {}", id);
 
@@ -76,6 +74,7 @@ public class ContactController {
 
     @PostMapping("/contact")
     @PreAuthorize("hasRole('admin')")
+    @SecurityRequirement(name = "agenda_auth")
     public ResponseEntity<ContactRecord> createContact(@RequestBody ContactRecord contact) throws URISyntaxException {
         log.debug("REST request to create a NEW contact: {}", contact );
 
@@ -88,6 +87,7 @@ public class ContactController {
 
     @PutMapping("/contacts/{id}")
     @PreAuthorize("hasRole('admin')")
+    @SecurityRequirement(name = "agenda_auth")
     public ResponseEntity<ContactRecord> updateContact(@PathVariable(value = "id") final Long id, @RequestBody ContactRecord contact) {
         log.debug("REST request to update contact: {}", id);
 
