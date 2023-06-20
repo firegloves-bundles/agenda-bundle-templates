@@ -7,16 +7,17 @@
         <th>LAST NAME</th>
         <th>ADDRESS</th>
         <th>PHONE NUMBER</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let contact of contactList">
-        <th>{{ contact.id }}</th>
+        <td class="hidden">{{ contact.id }}</td>
         <td>{{ contact.name }}</td>
         <td>{{ contact.lastname }}</td>
         <td>{{ contact.address }}</td>
         <td>{{ contact.phone }}</td>
-        <td></td>
+        <td><app-detailsmenu [contact]="contact"></app-detailsmenu></td>
       </tr>
     </tbody>
   </table>

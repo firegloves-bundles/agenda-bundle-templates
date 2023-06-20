@@ -1,13 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {ContactService} from "../services/contact.service";
-import {HttpClientModule} from "@angular/common/http";
 
 @Component({
     selector: 'app-modal',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
+    imports: [CommonModule],
     templateUrl: './modal.component.html',
 })
 export class ModalComponent {
@@ -16,26 +13,15 @@ export class ModalComponent {
     @Input() actionText = 'Yay!'
     @Input() title = 'Welcome'
 
-    constructor(private contactService: ContactService) {
+    @Output() okBtnPressedEvent = new EventEmitter<string>();
+
+    @ViewChild('myModal') myModal!: ElementRef;
+
+    okBtnPressed() {
+        this.okBtnPressedEvent.emit();
     }
 
-    contactForm = new FormGroup({
-        name: new FormControl(''),
-        lastname: new FormControl(''),
-        address: new FormControl(''),
-        phone: new FormControl('')
-    });
-
-    saveContact() {
-        this.contactService.saveContact(
-            this.contactForm.value.name ?? '',
-            this.contactForm.value.lastname ?? '',
-            this.contactForm.value.address ?? '',
-            this.contactForm.value.phone ?? ''
-        ).subscribe(c => {
-            console.log('aoiaoaoaoaoaoaoao', c);
-            this.concactList.push(c)
-            console.log('aoiaoaoaoaoaoaoao', this.concactList);
-        });
+    showModal(): void {
+        this.myModal.nativeElement.showModal();
     }
 }

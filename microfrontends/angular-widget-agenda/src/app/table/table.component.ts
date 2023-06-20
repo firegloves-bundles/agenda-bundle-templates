@@ -2,21 +2,30 @@ import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ContactService} from '../services/contact.service';
 import {Contact} from "../model/contact";
+import {DetailsmenuComponent} from "../detailsmenu/detailsmenu.component";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-table',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, DetailsmenuComponent],
     templateUrl: './table.component.html'
 })
 export class TableComponent {
 
-    // contactList: Contact[] = [];
-    //
-    // constructor(private contactService: ContactService) {
-    // }
-    //
-    // ngOnInit(): void {
-    //     this.contactService.getAllContacts().subscribe((data: Contact[]) => this.contactList = data);
-    // }
+    private subscription: Subscription | undefined;
+    contactList: Contact[] = [];
+
+    constructor(private contactService: ContactService) {
+    }
+
+    ngOnInit(): void {
+        this.subscription = this.contactService.getContacts().subscribe((data: Contact[]) => this.contactList = data);
+    }
+
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    }
 }

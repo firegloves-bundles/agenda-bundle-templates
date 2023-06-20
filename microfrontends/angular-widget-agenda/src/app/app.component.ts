@@ -1,11 +1,12 @@
 import {CommonModule} from '@angular/common';
-import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {TableComponent} from "./table/table.component";
 import {ModalComponent} from "./modal/modal.component";
 import {ContainerComponent} from './container/container.component';
 import {KeycloakService} from './services/keycloak.service';
 import {Contact} from "./model/contact";
 import {ContactService} from "./services/contact.service";
+import {UserFormModalComponent} from "./user-form-modal/user-form-modal.component";
 
 @Component({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -14,18 +15,19 @@ import {ContactService} from "./services/contact.service";
     encapsulation: ViewEncapsulation.ShadowDom,
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    imports: [CommonModule, TableComponent, ModalComponent, ContainerComponent]
+    imports: [CommonModule, TableComponent, ModalComponent, UserFormModalComponent, ContainerComponent]
 })
 export class AppComponent implements OnInit {
+
     title = 'angular-widget-agenda';
     keycloak: any;
-    contactList: Contact[] = [];
+    // contactList: Contact[] = [];
 
-    constructor(private keycloakService: KeycloakService, private contactService: ContactService) {
+    constructor(private keycloakService: KeycloakService) {//}, private contactService: ContactService) {
     }
 
     ngOnInit() {
         this.keycloakService.instance$.subscribe(kcInstance => this.keycloak = kcInstance);
-        this.contactService.getAllContacts().subscribe((data: Contact[]) => this.contactList = data);
+        // this.contactService.getContacts().subscribe((data: Contact[]) => this.contactList = data);
     }
 }

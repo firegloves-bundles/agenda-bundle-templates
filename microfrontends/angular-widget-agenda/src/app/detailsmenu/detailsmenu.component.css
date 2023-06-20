@@ -1,0 +1,12 @@
+:host {
+
+}
+.details-menu-cont {
+  position: relative;
+}
+
+.details-menu {
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+}

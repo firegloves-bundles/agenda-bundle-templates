@@ -2,26 +2,28 @@ import {Injectable} from '@angular/core';
 import {Contact} from "../model/contact";
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {catchError, Observable, throwError} from "rxjs";
+import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
+import {data} from "autoprefixer";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ContactService {
 
+    private contactList = new BehaviorSubject(new Array<Contact>());
+    private contactList$ = this.contactList.asObservable();
+
     constructor(private httpClient: HttpClient) {
+        this.fetchAndSetContacts();
     }
 
-    // private concactList: Array<Contact> = [
-    //     new Contact(1, "luca", "Cors", "via bella", "328"),
-    //     new Contact(2, "mario", "sangri", "via brutta", "1"),
-    //     new Contact(3, "ezio", "auditore", "via del ponte", "666"),
-    // ];
+    getContacts(): Observable<Contact[]>{
+        return this.contactList$;
+    }
 
-
-    getAllContacts(): Observable<Contact[]> {
+    fetchAndSetContacts() {
         const url = `${environment.domainUrl}/api/contacts`;
-        return this.httpClient.get<Contact[]>(url);
+        this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => this.contactList.next(data));
     }
 
     // getContactById(id: number): Contact | undefined {
@@ -33,6 +35,14 @@ export class ContactService {
         let contact = new Contact(-1, name, lastName, address, phoneNumber);
         const url = `${environment.domainUrl}/api/contact`;
         return this.httpClient.post<Contact>(url, contact)
+            .pipe(catchError(this.handleError));
+    }
+
+    deleteContact(id: number): Observable<any> {
+        const url = `${environment.domainUrl}/api/contacts/${id}`;
+        console.log(url);
+        console.log("implement delete query");
+        return this.httpClient.delete(url)
             .pipe(catchError(this.handleError));
     }
 

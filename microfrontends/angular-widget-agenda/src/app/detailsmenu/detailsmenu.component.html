@@ -1,0 +1,9 @@
+<div (click)="toggleMenu()"><span>DETAILS</span></div>
+<div [class.hidden]="!isMenuVisible" class="details-menu-cont">
+  <ul class="menu bg-base-200 w-56 rounded-box details-menu">
+    <li><a (click)="editContact()">Edit</a></li>
+    <li><a (click)="toggleConfirmationModal()">Delete</a></li>
+  </ul>
+</div>
+
+<app-modal (okBtnPressedEvent)="deleteContact()" [title]="'Do you want to delete?'"></app-modal>
