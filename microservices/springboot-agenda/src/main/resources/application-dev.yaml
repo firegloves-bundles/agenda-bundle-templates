@@ -23,4 +23,4 @@ springdoc:
 
 # CORS Configurations
 app:
-  allowed-api-origin: http://localhost:3000,http://localhost:3001
+  allowed-api-origin: http://localhost:3000,http://localhost:3001,http://localhost:5173
