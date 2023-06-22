@@ -62,7 +62,7 @@
   <body onLoad="initKeycloak();">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <react-widget></react-widget>
+    <react-widget-agenda></react-widget-agenda>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -75,18 +75,11 @@
     -->
     <script>
       function injectConfigIntoMfe() {
-        /**
-         * uncomment when api claim is ready
-         * 
-         * fetch('%PUBLIC_URL%/mfe-config.json').then(async response => {
-         *   const config = await response.text();
-         *   const rootComponet = document.querySelector('react-widget');
-         *   rootComponet.setAttribute('config', config);
-         * })
-        **/
-       
-        const rootComponet = document.querySelector('react-widget');
-        rootComponet.setAttribute('config', "{}");
+        fetch('%PUBLIC_URL%/mfe-config.json').then(async response => {
+          const config = await response.text();
+          const rootComponet = document.querySelector('react-widget-agenda');
+          rootComponet.setAttribute('config', config);
+        })
       }
 
       injectConfigIntoMfe()
