@@ -3,9 +3,7 @@ import {CommonModule} from "@angular/common";
 import {Contact} from "../model/contact";
 import {ContactService} from "../services/contact.service";
 import {ModalComponent} from "../modal/modal.component";
-import {UserformModalService} from "../services/userformModalService";
 import {UserFormModalComponent} from "../user-form-modal/user-form-modal.component";
-// import {ModalComponent} from "../modal/modal.component";
 
 @Component({
     selector: 'app-detailsmenu',
@@ -18,15 +16,13 @@ export class DetailsmenuComponent {
 
     @ViewChild(ModalComponent) modalComponent!: ModalComponent;
     @ViewChild(UserFormModalComponent) userFormModalComponent!: UserFormModalComponent;
-    //@ViewChild('toggleCheckbox') toggleCheckbox!: ElementRef<HTMLInputElement>;
 
     @Input() contact!: Contact;
 
     isMenuVisible = false;
     isConfirmationVisible = false;
 
-    constructor(private contactService: ContactService,
-                private userFormModalService: UserformModalService) {
+    constructor(private contactService: ContactService) {
     }
 
     toggleMenu(): void {
@@ -44,10 +40,10 @@ export class DetailsmenuComponent {
     }
 
     deleteContact() {
+        console.log('delete')
         if (this.contact) {
-            this.contactService.deleteContact(this.contact.id);
+            this.contactService.deleteContact(this.contact.id)
+                .subscribe(v => this.contactService.fetchAndSetContacts());
         }
     }
-
-
 }

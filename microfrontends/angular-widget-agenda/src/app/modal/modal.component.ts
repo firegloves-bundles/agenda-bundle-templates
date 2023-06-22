@@ -1,6 +1,5 @@
 import {Component, Input, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {UserformModalService} from "../services/userformModalService";
 
 @Component({
     selector: 'app-modal',
@@ -16,11 +15,6 @@ export class ModalComponent {
     @Output() okBtnPressedEvent = new EventEmitter<string>();
 
     @ViewChild('modal') modal!: ElementRef;
-
-
-    constructor(private userFormModalService: UserformModalService) {
-
-    }
 
     okBtnPressed() {
         this.okBtnPressedEvent.emit();
