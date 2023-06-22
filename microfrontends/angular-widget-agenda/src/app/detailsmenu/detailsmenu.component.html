@@ -6,4 +6,5 @@
   </ul>
 </div>
 
-<app-modal (okBtnPressedEvent)="deleteContact()" [title]="'Do you want to delete?'"></app-modal>
+<app-user-form-modal [contact]="contact" title="Edit User"></app-user-form-modal>
+<app-modal (okBtnPressedEvent)="deleteContact()" title="Do you want to delete?"></app-modal>

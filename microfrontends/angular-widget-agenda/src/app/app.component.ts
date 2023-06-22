@@ -18,10 +18,11 @@ import {UserFormModalComponent} from "./user-form-modal/user-form-modal.componen
     imports: [CommonModule, TableComponent, ModalComponent, UserFormModalComponent, ContainerComponent]
 })
 export class AppComponent implements OnInit {
+    @ViewChild(UserFormModalComponent) userFormModalComponent!: UserFormModalComponent;
 
     title = 'angular-widget-agenda';
     keycloak: any;
-    // contactList: Contact[] = [];
+
 
     constructor(private keycloakService: KeycloakService) {//}, private contactService: ContactService) {
     }
@@ -29,5 +30,9 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.keycloakService.instance$.subscribe(kcInstance => this.keycloak = kcInstance);
         // this.contactService.getContacts().subscribe((data: Contact[]) => this.contactList = data);
+    }
+
+    showUserFormModal() {
+        this.userFormModalComponent.showModal();
     }
 }

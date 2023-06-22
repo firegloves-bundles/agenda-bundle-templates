@@ -30,12 +30,18 @@ export class ContactService {
         // return this.concactList.find(contact => contact.id === id);
     // }
 
-    saveContact(name: string, lastName: string, address: string, phoneNumber: string): Observable<Contact> {
-        // console.log(`Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`);
-        let contact = new Contact(-1, name, lastName, address, phoneNumber);
+    saveContact(id: any, name: string, lastName: string, address: string, phoneNumber: string): Observable<Contact> {
+        let contact = {id, name, lastName, address, phoneNumber};
         const url = `${environment.domainUrl}/api/contact`;
-        return this.httpClient.post<Contact>(url, contact)
-            .pipe(catchError(this.handleError));
+
+        if (id > -1) {
+            return this.httpClient.put<Contact>(url, contact)
+                .pipe(catchError(this.handleError));
+        } else {
+            return this.httpClient.post<Contact>(url, contact)
+                .pipe(catchError(this.handleError));
+        }
+
     }
 
     deleteContact(id: number): Observable<any> {

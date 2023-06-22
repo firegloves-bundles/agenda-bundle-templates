@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, ElementRef, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {UserformModalService} from "../services/userformModalService";
 
 @Component({
     selector: 'app-modal',
@@ -9,19 +10,23 @@ import {CommonModule} from '@angular/common';
 })
 export class ModalComponent {
 
-    @Input() buttonText = 'Open Modal'
-    @Input() actionText = 'Yay!'
+    @Input() actionText = 'CANCEL'
     @Input() title = 'Welcome'
 
     @Output() okBtnPressedEvent = new EventEmitter<string>();
 
-    @ViewChild('myModal') myModal!: ElementRef;
+    @ViewChild('modal') modal!: ElementRef;
+
+
+    constructor(private userFormModalService: UserformModalService) {
+
+    }
 
     okBtnPressed() {
         this.okBtnPressedEvent.emit();
     }
 
     showModal(): void {
-        this.myModal.nativeElement.showModal();
+        this.modal.nativeElement.showModal();
     }
 }
