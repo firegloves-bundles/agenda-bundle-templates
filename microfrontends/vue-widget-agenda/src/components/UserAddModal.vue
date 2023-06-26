@@ -25,20 +25,19 @@ const $v = useVuelidate(
     {name, lastname, address, phone}
 );
 
-
-function toggleModal() {
+const toggleModal = () => {
   showModal.value = !showModal.value;
-}
+};
 
-function resetForm() {
+const resetForm = () => {
   $v.value.$reset();
   name.value = '';
   lastname.value = '';
   address.value = '';
   phone.value = '';
-}
+};
 
-function handleSubmit() {
+const handleSubmit = () => {
   let data = {
     name: name.value,
     lastname: lastname.value,
@@ -48,7 +47,7 @@ function handleSubmit() {
   emit('add-user', data);
   toggleModal();
   resetForm();
-}
+};
 
 const validate = (key) => {
   $v.value[key].$dirty = true;

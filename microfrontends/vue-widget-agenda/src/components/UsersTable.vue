@@ -30,12 +30,12 @@ defineProps({
   }]
 });
 
-function deleteUser(userId) {
+const deleteUser = userId => {
   emit('delete-user', userId);
-}
-function editUser(user) {
+};
+const editUser = user => {
   emit('edit-user', user);
-}
+};
 </script>
 
 <template>

@@ -7,9 +7,9 @@ const props = defineProps({
   showModal: Boolean
 });
 
-function confirmDeleteUser() {
+const confirmDeleteUser = () => {
   emit("delete-user", props.userId);
-}
+};
 
 </script>
 

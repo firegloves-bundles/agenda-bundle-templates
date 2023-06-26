@@ -34,21 +34,24 @@ defineProps({
       })
     }
 );
-function deleteUser(userId) {
+
+const toggleDeleteModal = () => {
+  showDeleteModal.value = !showDeleteModal.value;
+};
+
+const toggleEditModal = () => {
+  showEditModal.value = !showEditModal.value;
+};
+
+const deleteUser = userId => {
   emit("delete-user",userId);
   toggleDeleteModal();
-}
-function editUser(user) {
+};
+
+const editUser = user => {
   emit("edit-user",user);
   toggleEditModal();
-}
-function toggleEditModal() {
-  showEditModal.value = !showEditModal.value;
-}
-
-function toggleDeleteModal() {
-  showDeleteModal.value = !showDeleteModal.value;
-}
+};
 
 </script>
 

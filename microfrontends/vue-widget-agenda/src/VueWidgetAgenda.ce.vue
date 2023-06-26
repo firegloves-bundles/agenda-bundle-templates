@@ -36,7 +36,8 @@ const updateUserTableDelete = userId => {
     users.splice(index, 1);
   }
 }
-function handleAddToast(text, status) {
+
+const handleAddToast = (text, status) => {
   const alert = {
     id: notificationId.value,
     text: text,
@@ -45,7 +46,7 @@ function handleAddToast(text, status) {
   notifications.push(alert);
   notifications.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
   notificationId.value++;
-}
+};
 
 const handleRemoveToast = index => {
   const notificationIndex = notifications.findIndex(n => n.id === index);

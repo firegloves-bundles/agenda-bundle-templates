@@ -57,7 +57,7 @@ const updateUserProps = () => {
   props.user.phone=phone.value;
 };
 
-function handleSubmit() {
+const handleSubmit = () => {
   let data = {
     id: props.user.id,
     name: name.value,
@@ -67,7 +67,7 @@ function handleSubmit() {
   };
   emit('edit-user', data);
   updateUserProps();
-}
+};
 
 const setInitialValues = () => {
   name.value = props.user.name;
