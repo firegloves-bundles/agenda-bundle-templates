@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted, reactive } from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 
 const instance = ref(null);
 
@@ -11,7 +11,7 @@ function getKeycloakInstance() {
     }) || { initialized: false };
 }
 
-function refresh() {
+export function refresh() {
   instance.value = getKeycloakInstance();
 }
 
