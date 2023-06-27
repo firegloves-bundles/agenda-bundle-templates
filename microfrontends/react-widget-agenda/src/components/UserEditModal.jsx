@@ -49,6 +49,12 @@ const UserEditModal = ({user, visible, toggleVisible, config, handleAddToast, up
             handleAddToast(`Add contact failed!`, 'error');
         };
         toggleVisible();
+        reset({
+            name: data.name,
+            lastname: data.lastname,
+            address: data.address,
+            phone: data.phone,
+        });
     }
 
     const onClickClose = () => {
