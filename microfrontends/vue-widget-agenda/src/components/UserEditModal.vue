@@ -144,7 +144,7 @@ onMounted(()=>{
           </div>
         </div>
         <div class='"modal-action w-full place-content-between pt-3'>
-          <label for="my-modal" class="btn" @click="emit('cancel-edit-user')">Cancel</label>
+          <label for="my-modal btn-secondary" class="btn" @click="emit('cancel-edit-user')">Cancel</label>
           <button class="btn btn-primary float-right" :disabled="$v.$invalid">Submit</button>
         </div>
       </form>

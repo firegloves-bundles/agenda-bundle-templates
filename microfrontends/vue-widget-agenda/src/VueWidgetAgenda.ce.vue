@@ -131,7 +131,7 @@ onMounted(() => {
 
 <template>
   <!-- NOTE: data-theme is for propagate the css variables theme through the shadow dom -->
-  <div data-theme="light">
+  <div data-theme="entando">
     <Loading v-if="isLoading"></Loading>
     <div v-else>
       <Container v-if="keycloak && keycloak.initialized">

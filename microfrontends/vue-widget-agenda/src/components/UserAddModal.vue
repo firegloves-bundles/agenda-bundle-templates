@@ -56,7 +56,7 @@ const validate = (key) => {
 </script>
 <template>
   <div class="float-right">
-    <label for="my-modal" class="btn mb-3 mt-3" @click="toggleModal">Add User</label>
+    <label for="my-modal" class="btn mb-3 mt-3 btn-primary" @click="toggleModal">Add User</label>
   </div>
   <div class="modal" :class="{'modal-open': showModal }">
     <div class="modal-box">
@@ -117,7 +117,7 @@ const validate = (key) => {
           </div>
         </div>
         <div class='"modal-action w-full place-content-between pt-3'>
-          <label for="my-modal" class="btn" @click="toggleModal">Cancel</label>
+          <label for="my-modal btn-secondary" class="btn" @click="toggleModal">Cancel</label>
           <button class="btn btn-primary float-right" :disabled="$v.$invalid">Submit</button>
         </div>
       </form>

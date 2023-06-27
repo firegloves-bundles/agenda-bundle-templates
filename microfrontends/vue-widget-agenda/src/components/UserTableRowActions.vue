@@ -1,6 +1,6 @@
 <script setup>
 import UserEditModal from "./UserEditModal.vue";
-import DeleteUserModal from "./DeleteUserModal.vue";
+import UserDeleteModal from "./UserDeleteModal.vue";
 import {ref} from "vue";
 
 const showDeleteModal = ref(false);
@@ -57,7 +57,7 @@ const editUser = user => {
 
 <template>
   <div class="dropdown float-right">
-    <label tabindex="0" class="btn m-1">
+    <label tabindex="0" class="btn m-1 btn-list">
       <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
@@ -81,7 +81,7 @@ const editUser = user => {
   <UserEditModal :user="user" :showModal=showEditModal
                    @cancel-edit-user="toggleEditModal" @edit-user="editUser"/>
 
-  <DeleteUserModal :userId="userId" :showModal=showDeleteModal
+  <UserDeleteModal :userId="userId" :showModal=showDeleteModal
                    @cancel-delete-user="toggleDeleteModal" @delete-user="deleteUser(userId)"/>
 
 </template>
