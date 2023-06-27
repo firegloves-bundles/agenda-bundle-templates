@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Modal} from 'react-daisyui'
 
 
-const DeleteUserModal = ({visible, toggleVisible, userId, handleConfirmDelete}) => {
+const UserDeleteModal = ({visible, toggleVisible, userId, handleConfirmDelete}) => {
     return (
         <Modal open={visible}>
             <Modal.Header className="font-bold">
@@ -19,11 +19,11 @@ const DeleteUserModal = ({visible, toggleVisible, userId, handleConfirmDelete}) 
     );
 }
 
-DeleteUserModal.propTypes = {
+UserDeleteModal.propTypes = {
     visible: PropTypes.bool.isRequired,
     toggleVisible: PropTypes.func.isRequired,
     userId: PropTypes.number.isRequired,
     handleConfirmDelete: PropTypes.func.isRequired
 }
 
-export default DeleteUserModal;
+export default UserDeleteModal;
