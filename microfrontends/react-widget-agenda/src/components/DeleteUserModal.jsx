@@ -11,8 +11,8 @@ const DeleteUserModal = ({visible, toggleVisible, userId, handleConfirmDelete}) 
             </Modal.Header>
             <Modal.Body>
                 <Modal.Actions className="place-content-between">
-                    <div className='btn' onClick={toggleVisible}>Cancel</div>
-                    <Button onClick={handleConfirmDelete}>Confirm</Button>
+                    <div className='btn btn-secondary' onClick={toggleVisible}>Cancel</div>
+                    <Button className='btn btn-primary'onClick={handleConfirmDelete}>Confirm</Button>
                 </Modal.Actions>
             </Modal.Body>
         </Modal>

@@ -62,7 +62,7 @@ const UserAddModal = ({config, handleAddToast, updateUsersTable}) => {
 
     return (
         <div className="float-right">
-            <Button onClick={toggleVisible} className="mb-3 mt-3">Add User</Button>
+            <Button onClick={toggleVisible} className="mb-3 mt-3 btn-primary">Add User</Button>
             <Modal open={visible}>
                 <Modal.Header className="font-bold">
                     Add User

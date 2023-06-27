@@ -22,7 +22,7 @@ const UserForm = ({control, errors, onClickClose, onSubmit, render}) => {
                     render={render}
                     errors={errors}/>
         <Modal.Actions className='place-content-between'>
-            <div className='btn' onClick={onClickClose}>Cancel</div>
+            <div className='btn btn-secondary' onClick={onClickClose}>Cancel</div>
             <Button className='btn btn-primary'>Submit</Button>
         </Modal.Actions>
     </form>;
