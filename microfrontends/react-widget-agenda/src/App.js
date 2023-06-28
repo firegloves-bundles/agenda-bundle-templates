@@ -53,7 +53,7 @@ function App({config}) {
 
     return (
         // NOTE: data-theme is for propagate the css variables theme through the shadow dom
-        <div data-theme="light">
+        <div data-theme="entando">
             <Container>
                 {isLoading ? (
                     <Loading/>
