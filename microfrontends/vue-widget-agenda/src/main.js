@@ -7,6 +7,7 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
     let initOptions;
 
     console.log(`--> main-silentCheckSsoRedirectUri: `, `${window.location.origin}/entando-de-app/resources/static/silent-check-sso.html`)
+    console.log('--> import.meta.env.PROD:', import.meta.env.PROD);
 
     if (import.meta.env.PROD) {
         initOptions = {
@@ -17,9 +18,9 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
         }
     } else {
         initOptions = {
-            url: import.meta.env.KEYCLOAK_URL,
-            realm: import.meta.env.KEYCLOAK_REALM,
-            clientId: import.meta.env.KEYCLOAK_CLIENT_ID,
+            url: import.meta.env.VITE_KEYCLOAK_URL,
+            realm: import.meta.env.VITE_KEYCLOAK_REALM,
+            clientId: import.meta.env.VITE_KEYCLOAK_CLIENT_ID,
             onLoad: 'login-required'
         }
     }
