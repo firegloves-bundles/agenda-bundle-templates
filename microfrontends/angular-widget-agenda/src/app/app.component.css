@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '../common.css';
 
 /**
 * Propagate some defaults to the web-component
@@ -15,7 +14,7 @@
   font-feature-settings: 'normal';
   margin: 0;
   line-height: inherit;
-  background-color: var(--accent-color);
+  /*background-color: var(--accent-color);*/
 }
 
 .green-header {

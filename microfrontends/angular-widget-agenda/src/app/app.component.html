@@ -1,9 +1,8 @@
-<div class="w-full green-header"></div>
-<div data-theme="light">
+<div data-theme="entando">
   <app-container>
     <div class="app-header w-full flex">
       <h3 class="flex-auto">Users Agenda</h3>
-      <button class="btn" (click)="showUserFormModal()">Add user</button>
+      <button class="btn btn-primary" (click)="showUserFormModal()">Add user</button>
       <app-user-form-modal buttonText="ADD USER" actionText="CANCEL" title="Add New User" class="flex-auto"></app-user-form-modal>
     </div>
     <app-table></app-table>

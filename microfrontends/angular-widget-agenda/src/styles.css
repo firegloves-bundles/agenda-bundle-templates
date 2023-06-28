@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.listing-apply .label {
+  color: black;
+}
+
+button {
+  background-color: red !important;
+}
