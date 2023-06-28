@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Dropdown} from 'react-daisyui';
-import DeleteUserModal from './DeleteUserModal';
+import UserDeleteModal from './UserDeleteModal';
 import UserEditModal from './UserEditModal';
 import {deleteUser} from '../api/users';
 import {useKeycloak} from '../auth/Keycloak';
@@ -67,7 +67,7 @@ const UsersTableRowActions = ({config, handleAddToast, updateUsersTable, user}) 
                            config={config}
                            handleAddToast={handleAddToast}
                            updateUsersTable={updateUsersTable}/>
-            <DeleteUserModal visible={deleteModalVisible}
+            <UserDeleteModal visible={deleteModalVisible}
                              toggleVisible={toggleDeleteModalVisible}
                              userId={user.id}
                              handleConfirmDelete={handleConfirmDelete}  />
