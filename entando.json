@@ -90,7 +90,7 @@
         "agenda-keycloak"
     ],
     "name": "agenda-bundle-templates",
-    "version": "0.0.1",
+    "version": "0.0.9",
     "description": "agenda-bundle-templates description",
     "type": "bundle"
 }

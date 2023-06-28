@@ -1,11 +1,6 @@
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class SecurityInterceptor implements HttpInterceptor {
@@ -35,14 +30,11 @@ export class SecurityInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    if (request.method != 'GET') {
+    const headers = this.getDefaultOptions();
 
-      const headers = this.getDefaultOptions();
-
-      request = request.clone({
-        setHeaders: headers,
-      });
-    }
+    request = request.clone({
+      setHeaders: headers,
+    });
 
     return next.handle(request);
   }

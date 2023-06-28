@@ -13,7 +13,7 @@
       function createKcDispatcher(payload) {
         return () => window.dispatchEvent(new CustomEvent('keycloak', { detail: payload }));
       }
-        console.log('aaaana')
+
       function initKeycloak() {
         const keycloak = Keycloak({
           url: 'http://localhost:9080/auth',

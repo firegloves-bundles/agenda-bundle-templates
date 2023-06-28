@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,6 @@ export class KeycloakService {
   }
 
   private getKeycloakInstance() {
-    console.log('aooo')
     return (window &&
       window.entando &&
       window.entando.keycloak && {
