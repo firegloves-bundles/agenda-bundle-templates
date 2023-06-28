@@ -7,9 +7,11 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
     let initOptions;
 
     console.log(`--> main-silentCheckSsoRedirectUri: `, `${window.location.origin}/entando-de-app/resources/static/silent-check-sso.html`)
-    console.log('--> import.meta.env.PROD:', import.meta.env.PROD);
+    console.log('--> import.meta.env:', import.meta.env);
 
     if (import.meta.env.PROD) {
+        console.log('--> PROD');
+
         initOptions = {
             onLoad: 'check-sso',
             silentCheckSsoRedirectUri: `${window.location.origin}/entando-de-app/resources/static/silent-check-sso.html`,
@@ -17,6 +19,7 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
             enableLogging: true
         }
     } else {
+        console.log('--> DEV');
         initOptions = {
             url: import.meta.env.VITE_KEYCLOAK_URL,
             realm: import.meta.env.VITE_KEYCLOAK_REALM,
@@ -39,6 +42,7 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
             customElements.define("vue-widget-agenda", WidgetCustomElement);
         }
         if (import.meta.env.DEV) {
+            console.log('--> DEV - setInterval');
                 setInterval(() => {
                 keycloak.updateToken(70).then((refreshed) => {
                     if (refreshed) {
@@ -55,3 +59,5 @@ const WidgetCustomElement = defineCustomElement(VueWidgetAgenda);
     }).catch(() => {
         console.error("Authenticated Failed");
     });
+
+    console.log('end main.js');
