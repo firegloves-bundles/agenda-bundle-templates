@@ -2,7 +2,7 @@
 import UsersTable from "./components/UsersTable.vue";
 import Container from "./components/ui/Container.vue";
 import UserAddModal from "./components/UserAddModal.vue";
-import {onMounted, reactive, ref} from "vue";
+import {nextTick, onMounted, onRenderTriggered, onUpdated, reactive, ref} from "vue";
 import {postUser, putUser, deleteUser, fetchUsers} from "./api/users.js";
 import Loading from "./components/ui/Loading.vue";
 import {useKeycloak} from "./keycloak.js";
@@ -15,6 +15,7 @@ const props = defineProps({
 );
 
 let isLoading = ref(false);
+let loadedUsers = ref(false);
 let users = reactive([]);
 let notifications = reactive([]);
 let notificationId= ref(0);
@@ -121,10 +122,26 @@ const loadUsers = () => {
     console.warn("Not authenticated")
   }
   isLoading = false;
-};;
-
+};
 onMounted(() => {
-  loadUsers();
+  console.log('onMounted');
+  loadedUsers.value=false;
+  console.log('loadedUsers',loadedUsers.value);
+  console.log('------------------------');
+
+});
+
+//onRenderTriggered(() => {
+onUpdated(() => {
+  console.log('onUpdated');
+  console.log('users.length===0',users.length===0);
+  console.log('loadedUsers 1',loadedUsers.value)
+  if (users.length===0 && loadedUsers.value === false && keycloak.value.authenticated) {
+    loadUsers();
+    loadedUsers.value=true;
+  }
+  console.log('loadedUsers 2',loadedUsers.value)
+  console.log('------------------------');
 });
 
 </script>
@@ -143,7 +160,6 @@ onMounted(() => {
         </div>
         <UsersTable :users="users" @edit-user="editUserClick" @delete-user="deleteUserClick"/>
       </Container>
-      <p v-else>Keycloak is not initialized</p>
     </div>
     <Notifications :alerts="notifications" @delete-notification="handleRemoveToast" />
   </div>
