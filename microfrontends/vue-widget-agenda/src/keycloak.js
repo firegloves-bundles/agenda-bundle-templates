@@ -11,7 +11,7 @@ function getKeycloakInstance() {
     }) || { initialized: false };
 }
 
-export function refresh() {
+function refresh() {
   instance.value = getKeycloakInstance();
 }
 
