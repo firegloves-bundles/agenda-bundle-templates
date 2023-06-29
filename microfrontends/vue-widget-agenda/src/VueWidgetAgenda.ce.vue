@@ -14,11 +14,11 @@ const props = defineProps({
     }
 );
 
-let isLoading = ref(false);
-let loadedUsers = ref(false);
-let users = reactive([]);
-let notifications = reactive([]);
-let notificationId = ref(0);
+const isLoading = ref(false);
+const loadedUsers = ref(false);
+const users = reactive([]);
+const notifications = reactive([]);
+const notificationId = ref(0);
 
 const updateUserTableAdd = data => {
   users.unshift(data);
@@ -57,7 +57,7 @@ const handleRemoveToast = index => {
 };
 
 const deleteUserClick = async userId => {
-  isLoading = true;
+  isLoading.value = true;
   if (keycloak.value.authenticated) {
     const res = await deleteUser(props.config, userId);
     if (res.responseType === "OK") {
@@ -71,11 +71,11 @@ const deleteUserClick = async userId => {
     handleAddToast(`Delete User ${userId} failed. Not authenticated`, 'error');
     console.warn("Not authenticated");
   }
-  isLoading = false;
+  isLoading.value = false;
 };
 
 const addUserClick = async user => {
-  isLoading = true;
+  isLoading.value = true;
   if (keycloak.value.authenticated) {
     const res = await postUser(props.config, user);
     if (res.responseType === "OK") {
@@ -88,11 +88,11 @@ const addUserClick = async user => {
     console.warn("Not authenticated")
     handleAddToast(`Add contact ${user.id} failed! Not authenticated`, 'error');
   }
-  isLoading = false;
+  isLoading.value = false;
 };
 
 const editUserClick = async (user) => {
-  isLoading = true;
+  isLoading.value = true;
 
   if (keycloak.value.authenticated) {
     const res = await putUser(props.config, user.id, user);
@@ -106,11 +106,11 @@ const editUserClick = async (user) => {
     console.warn("keycloak not authenticated")
     handleAddToast(`Edit user ${user.id} failed! Not authenticated`, 'error');
   }
-  isLoading = false;
+  isLoading.value = false;
 };
 
 const loadUsers = () => {
-  isLoading = true;
+  isLoading.value = true;
   if (keycloak.value.authenticated) {
     const req = async () => {
       const u = await fetchUsers(props.config);
@@ -121,7 +121,7 @@ const loadUsers = () => {
   } else {
     console.warn("Not authenticated")
   }
-  isLoading = false;
+  isLoading.value = false;
 };
 onMounted(() => {
   loadedUsers.value = false;
