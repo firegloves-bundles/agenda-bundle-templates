@@ -39,7 +39,7 @@ const editUser = user => {
 </script>
 
 <template>
-  <table v-if="users.length>0" class="table table-zebra w-full">
+  <table v-if="users.length>0" class="table table-zebra w-full" aria-label="Users Agenda">
     <thead>
     <tr>
       <th scope="col">ID</th>
