@@ -18,13 +18,13 @@ let isLoading = ref(false);
 let loadedUsers = ref(false);
 let users = reactive([]);
 let notifications = reactive([]);
-let notificationId= ref(0);
+let notificationId = ref(0);
 
 const updateUserTableAdd = data => {
   users.unshift(data);
 }
 
-const updateUserTableEdit = user =>{
+const updateUserTableEdit = user => {
   const index = users.findIndex(u => u.id === user.id);
   if (index > -1) {
     users.splice(index, 1, user);
@@ -61,14 +61,14 @@ const deleteUserClick = async userId => {
   if (keycloak.value.authenticated) {
     const res = await deleteUser(props.config, userId);
     if (res.responseType === "OK") {
-      handleAddToast(`User ${userId} deleted `,'success');
+      handleAddToast(`User ${userId} deleted `, 'success');
       updateUserTableDelete(userId);
 
-    }else{
-      handleAddToast(`Delete User ${userId} failed`,'error');
+    } else {
+      handleAddToast(`Delete User ${userId} failed`, 'error');
     }
   } else {
-    handleAddToast(`Delete User ${userId} failed. Not authenticated`,'error');
+    handleAddToast(`Delete User ${userId} failed. Not authenticated`, 'error');
     console.warn("Not authenticated");
   }
   isLoading = false;
@@ -79,14 +79,14 @@ const addUserClick = async user => {
   if (keycloak.value.authenticated) {
     const res = await postUser(props.config, user);
     if (res.responseType === "OK") {
-      handleAddToast(`User ${res.data.id} - ${res.data.name} ${res.data.lastname} added`,'success');
+      handleAddToast(`User ${res.data.id} - ${res.data.name} ${res.data.lastname} added`, 'success');
       updateUserTableAdd(res.data);
     } else {
-      handleAddToast(`Add contact ${user.id} failed!`,'error');
+      handleAddToast(`Add contact ${user.id} failed!`, 'error');
     }
   } else {
     console.warn("Not authenticated")
-    handleAddToast(`Add contact ${user.id} failed! Not authenticated`,'error');
+    handleAddToast(`Add contact ${user.id} failed! Not authenticated`, 'error');
   }
   isLoading = false;
 };
@@ -98,13 +98,13 @@ const editUserClick = async (user) => {
     const res = await putUser(props.config, user.id, user);
     if (res.responseType === "OK") {
       updateUserTableEdit(user);
-      handleAddToast(`User ${user.id} edited!`,'success');
-    } else  {
-      handleAddToast(`Edit user ${user.id} failed!`,'error');
+      handleAddToast(`User ${user.id} edited!`, 'success');
+    } else {
+      handleAddToast(`Edit user ${user.id} failed!`, 'error');
     }
   } else {
     console.warn("keycloak not authenticated")
-    handleAddToast(`Edit user ${user.id} failed! Not authenticated`,'error');
+    handleAddToast(`Edit user ${user.id} failed! Not authenticated`, 'error');
   }
   isLoading = false;
 };
@@ -124,24 +124,14 @@ const loadUsers = () => {
   isLoading = false;
 };
 onMounted(() => {
-  console.log('onMounted');
-  loadedUsers.value=false;
-  console.log('loadedUsers',loadedUsers.value);
-  console.log('------------------------');
-
+  loadedUsers.value = false;
 });
 
-//onRenderTriggered(() => {
 onUpdated(() => {
-  console.log('onUpdated');
-  console.log('users.length===0',users.length===0);
-  console.log('loadedUsers 1',loadedUsers.value)
-  if (users.length===0 && loadedUsers.value === false && keycloak.value.authenticated) {
+  if (users.length === 0 && loadedUsers.value === false && keycloak.value.authenticated) {
     loadUsers();
-    loadedUsers.value=true;
+    loadedUsers.value = true;
   }
-  console.log('loadedUsers 2',loadedUsers.value)
-  console.log('------------------------');
 });
 
 </script>
@@ -161,7 +151,7 @@ onUpdated(() => {
         <UsersTable :users="users" @edit-user="editUserClick" @delete-user="deleteUserClick"/>
       </Container>
     </div>
-    <Notifications :alerts="notifications" @delete-notification="handleRemoveToast" />
+    <Notifications :alerts="notifications" @delete-notification="handleRemoveToast"/>
   </div>
 </template>
 
