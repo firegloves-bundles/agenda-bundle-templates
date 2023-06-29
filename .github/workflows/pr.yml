@@ -29,7 +29,7 @@ jobs:
         versionSuffix=$(echo "${{ github.event.pull_request.title }}" | awk '{print $1}')
         bash .github/functions/utils.sh setBundleVersion -$versionSuffix
         bash .github/functions/utils.sh setComponentVersions -$versionSuffix
-        ent bundle build --all --stdout --fail-fast
+        ent --debug bundle build --all --stdout --fail-fast
         cd microservices/springboot-agenda && mvn sonar:sonar --no-transfer-progress && cd ../..
         cd microfrontends/angular-widget-agenda && ent npm run sonar && cd ../..
         cd microfrontends/react-widget-agenda && ent npm run sonar && cd ../..
