@@ -1,8 +1,6 @@
 const serviceName = 'springboot-agenda-api';
 const getKeycloakToken = () => {
-    if (window && window.entando
-        && window.entando.keycloak
-        && window.entando.keycloak.authenticated) {
+    if (window?.entando?.keycloak?.authenticated) {
         return window.entando.keycloak.token
     }
     return ''

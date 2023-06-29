@@ -42,17 +42,17 @@ const editUser = user => {
   <table v-if="users.length>0" class="table table-zebra w-full">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>NAME</th>
-      <th>LASTNAME</th>
-      <th>ADDRESS</th>
-      <th>PHONE</th>
-      <th></th>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">LASTNAME</th>
+      <th scope="col">ADDRESS</th>
+      <th scope="col">PHONE</th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     <tr v-for="user in users" :key="user.id" class="hover">
-      <th>{{ user.id }}</th>
+      <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.lastname }}</td>
       <td>{{ user.address }}</td>
