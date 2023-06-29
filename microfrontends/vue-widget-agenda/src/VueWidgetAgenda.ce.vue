@@ -2,7 +2,7 @@
 import UsersTable from "./components/UsersTable.vue";
 import Container from "./components/ui/Container.vue";
 import UserAddModal from "./components/UserAddModal.vue";
-import {nextTick, onMounted, onRenderTriggered, onUpdated, reactive, ref} from "vue";
+import {onMounted, onUpdated, reactive, ref} from "vue";
 import {postUser, putUser, deleteUser, fetchUsers} from "./api/users.js";
 import Loading from "./components/ui/Loading.vue";
 import {useKeycloak} from "./keycloak.js";
