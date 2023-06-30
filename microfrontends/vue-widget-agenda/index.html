@@ -44,14 +44,26 @@
           const onLoad = window.location.hostname === 'localhost' ? 'login-required' : 'check-sso';
           const silentCheckSsoRedirectUri = window.location.origin + '/silent-check-sso.html';
 
-          window.entando.keycloak.init({ onLoad, silentCheckSsoRedirectUri }).success(onInit);
+          window.entando.keycloak.init({ onLoad, silentCheckSsoRedirectUri }).then(onInit);
         }
         return initKeycloak;
       })();
     </script>
   </head>
   <body onLoad="onLoad();">
-    <vue-widget></vue-widget>
+    <vue-widget-agenda></vue-widget-agenda>
     <script type="module" src="/src/main.js"></script>
+
+    <script>
+        function injectConfigIntoMfe() {
+            fetch('mfe-config.json').then(async response => {
+                const config = await response.text();
+                const rootComponent = document.querySelector('vue-widget-agenda');
+                rootComponent.setAttribute('config', config);
+            })
+
+        }
+        injectConfigIntoMfe()
+    </script>
   </body>
 </html>

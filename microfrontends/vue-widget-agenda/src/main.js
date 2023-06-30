@@ -1,6 +1,6 @@
 import { defineCustomElement } from 'vue'
-import VueWidget from './VueWidget.ce.vue'
+import VueWidgetAgenda from './VueWidgetAgenda.ce.vue'
 
-const WidgetCustomElement = defineCustomElement(VueWidget)
+const WidgetCustomElement = defineCustomElement(VueWidgetAgenda)
 
-customElements.define("vue-widget", WidgetCustomElement)
+customElements.define("vue-widget-agenda", WidgetCustomElement)

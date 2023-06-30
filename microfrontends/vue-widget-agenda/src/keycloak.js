@@ -1,4 +1,4 @@
-import { ref, onMounted, onUnmounted, reactive } from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 
 const instance = ref(null);
 
