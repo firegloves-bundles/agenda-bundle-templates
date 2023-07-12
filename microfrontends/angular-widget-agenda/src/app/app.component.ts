@@ -30,10 +30,14 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.keycloakService.instance$.subscribe(kcInstance => this.keycloak = kcInstance);
         this.setConfig();
         this.contactService.apiBaseUrl = this.config.systemParams.api["springboot-agenda-api"].url;
-        this.contactService.fetchAndSetContacts();
+        this.keycloakService.instance$.subscribe(kcInstance => {
+            this.keycloak = kcInstance;
+            if (kcInstance.initialized) {
+                this.contactService.fetchAndSetContacts();
+            }
+        });
     }
 
     private setConfig() {
