@@ -18,6 +18,7 @@ export class SecurityInterceptor implements HttpInterceptor {
 
   getDefaultOptions() {
     const token = this.getKeycloakToken();
+    console.log('adding token', token)
 
     return {
       Authorization: `Bearer ${token}`,

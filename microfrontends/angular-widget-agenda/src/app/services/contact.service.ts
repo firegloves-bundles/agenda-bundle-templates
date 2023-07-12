@@ -21,6 +21,7 @@ export class ContactService {
     }
 
     fetchAndSetContacts() {
+        console.log('fetch contacts')
         const url = `${this._apiBaseUrl}/api/contacts`;
         this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => this.contactList.next(data));
     }
