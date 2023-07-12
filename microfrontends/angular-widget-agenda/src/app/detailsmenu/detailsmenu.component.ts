@@ -40,7 +40,6 @@ export class DetailsmenuComponent {
     }
 
     deleteContact() {
-        console.log('delete')
         if (this.contact) {
             this.contactService.deleteContact(this.contact.id)
                 .subscribe(v => this.contactService.fetchAndSetContacts());

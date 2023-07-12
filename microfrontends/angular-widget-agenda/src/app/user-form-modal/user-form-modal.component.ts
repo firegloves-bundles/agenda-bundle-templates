@@ -12,6 +12,7 @@ import {Contact} from "../model/contact";
 })
 export class UserFormModalComponent {
 
+  @Input() showBtn = false
   @Input() buttonText = 'Open Modal'
   @Input() actionText = 'CANCEL'
   @Input() title = 'Welcome'
@@ -19,7 +20,7 @@ export class UserFormModalComponent {
 
   @Output() okBtnPressedEvent = new EventEmitter<string>();
 
-  @ViewChild('userFormModal') modal!: ElementRef;
+  @ViewChild('myModalLabel') modalLabel!: ElementRef;
 
   contactForm!: FormGroup;
 
@@ -52,6 +53,6 @@ export class UserFormModalComponent {
   }
 
   showModal(): void {
-      this.modal.nativeElement.showModal();
+      this.modalLabel.nativeElement.click();
   }
 }

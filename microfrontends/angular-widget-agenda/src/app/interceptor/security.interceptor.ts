@@ -30,6 +30,7 @@ export class SecurityInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
+    console.log("alklooooooooora")
     const headers = this.getDefaultOptions();
 
     request = request.clone({

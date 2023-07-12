@@ -8,7 +8,7 @@ module.exports = {
     extend: {},
   },
   daisyui: {
-    logs: false,
+    // logs: false,
     themes: [{
       entando: {
         "primary": "#22c55e",
@@ -36,7 +36,10 @@ module.exports = {
     styled: true,
     base: true,
     utils: true,
+    logs: true,
     rtl: false,
+    prefix: "",
+    darkTheme: "dark",
   },
   plugins: [require("daisyui")],
 }

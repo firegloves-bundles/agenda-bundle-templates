@@ -1,9 +1,23 @@
-<div (click)="toggleMenu()"><span>DETAILS</span></div>
-<div [class.hidden]="!isMenuVisible" class="details-menu-cont">
-  <ul class="menu bg-base-200 w-56 rounded-box details-menu">
-    <li><a (click)="editContact()">Edit</a></li>
-    <li><a (click)="toggleConfirmationModal()">Delete</a></li>
-  </ul>
+<!--<div (click)="toggleMenu()"><span>DETAILS</span></div>-->
+<!--<div [class.hidden]="!isMenuVisible" class="details-menu-cont">-->
+<!--  <ul class="menu bg-base-200 w-56 rounded-box details-menu">-->
+<!--    <li><a (click)="editContact()">Edit</a></li>-->
+<!--    <li><a (click)="toggleConfirmationModal()">Delete</a></li>-->
+<!--  </ul>-->
+<!--</div>-->
+
+<div role="listbox" class="dropdown">
+  <label tabindex="0">
+    <div (click)="toggleMenu()" class="float-right "><span>DETAILS</span></div>
+<!--    <ul tabindex="0" class="dropdown-content menu rounded-box dropdown-content menu p-2 shadow bg-base-100 rounded-box" [class.hidden]="!isMenuVisible" >-->
+<!--      <li><a>Edit</a></li>-->
+<!--      <li><a>Delete</a></li>-->
+<!--    </ul>-->
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"  [class.hidden]="!isMenuVisible">
+      <li><label (click)="editContact()">Edit</label></li>
+      <li><label (click)="toggleConfirmationModal()">Delete</label></li>
+    </ul>
+  </label>
 </div>
 
 <app-user-form-modal [contact]="contact" title="Edit User"></app-user-form-modal>

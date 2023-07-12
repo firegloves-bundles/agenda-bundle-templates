@@ -1,4 +1,7 @@
-<dialog #userFormModal class="modal">
+<label for="my-modal" #myModalLabel class="btn btn-primary float-right" [class.hidden]="!showBtn">Add user</label>
+
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
   <form method="dialog" class="modal-box">
     <h3 class="font-bold text-lg">{{ title }}</h3>
 
@@ -19,9 +22,9 @@
     </section>
 
     <div class="modal-action">
-      <button class="btn btn-secondary">{{ actionText }}</button>
-      <button class="btn btn-primary" (click)="okBtnPressed()">SUBMIT</button>
+      <label for="my-modal" class="btn">{{ actionText }}</label>
+      <label for="my-modal" class="btn btn-primary" (click)="okBtnPressed()">SUBMIT</label>
     </div>
 
   </form>
-</dialog>
+</div>

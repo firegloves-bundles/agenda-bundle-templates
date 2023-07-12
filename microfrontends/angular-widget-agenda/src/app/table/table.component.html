@@ -1,8 +1,8 @@
 <div class="overflow-x-auto">
-  <table class="table">
+  <table class="table table-zebra w-full mt-3" aria-label="Users Agenda">
     <thead>
       <tr>
-        <th></th>
+        <th>ID</th>
         <th>NAME</th>
         <th>LAST NAME</th>
         <th>ADDRESS</th>
@@ -12,12 +12,20 @@
     </thead>
     <tbody>
       <tr *ngFor="let contact of contactList">
-        <td class="hidden">{{ contact.id }}</td>
+        <td class="font-bold">{{ contact.id }}</td>
         <td>{{ contact.name }}</td>
         <td>{{ contact.lastname }}</td>
         <td>{{ contact.address }}</td>
         <td>{{ contact.phone }}</td>
         <td><app-detailsmenu [contact]="contact"></app-detailsmenu></td>
+      </tr>
+      <tr>
+        <td class="font-bold">1</td>
+        <td>aaa</td>
+        <td>ddd</td>
+        <td>fff</td>
+        <td>543433</td>
+        <td><app-detailsmenu></app-detailsmenu></td>
       </tr>
     </tbody>
   </table>

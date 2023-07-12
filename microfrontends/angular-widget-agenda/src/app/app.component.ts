@@ -14,7 +14,7 @@ import {ContactService} from "./services/contact.service";
     standalone: true,
     encapsulation: ViewEncapsulation.ShadowDom,
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['../styles.css', './app.component.css'],
     imports: [CommonModule, TableComponent, ModalComponent, UserFormModalComponent, ContainerComponent]
 })
 export class AppComponent implements OnInit {
