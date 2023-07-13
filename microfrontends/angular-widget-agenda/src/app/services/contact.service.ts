@@ -11,20 +11,22 @@ export class ContactService {
     private contactList = new BehaviorSubject(new Array<Contact>());
     private contactList$ = this.contactList.asObservable();
     private _apiBaseUrl = '';
+
     constructor(private httpClient: HttpClient) {}
 
     public set apiBaseUrl(value: string) {
         this._apiBaseUrl = value;
     }
+
     getContacts(): Observable<Contact[]>{
         return this.contactList$;
     }
 
     fetchAndSetContacts() {
-        console.log('fetch contacts')
         const url = `${this._apiBaseUrl}/api/contacts`;
         this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => this.contactList.next(data));
     }
+
     saveContact(id: any, name: string, lastname: string, address: string, phone: string): Observable<Contact> {
         let contact = {id, name, lastname, address, phone};
 
@@ -39,6 +41,7 @@ export class ContactService {
         }
 
     }
+
     deleteContact(id: number): Observable<any> {
         const url = `${this._apiBaseUrl}/api/contacts/${id}`;
         return this.httpClient.delete(url)

@@ -23,11 +23,11 @@ module.exports = {
         ".btn-primary": {
           'color': '#FFFFFF',
         },
-        "div.dropdown > label > label > button": {
+        ".btn-list": {
           'background-color': '#888888',
           'border-color': '#777777'
         },
-        "div.dropdown > label > label > button:hover": {
+        ".btn-list:hover": {
           'background-color': '#22c55e',
           'border-color': '#22c55e'
         },

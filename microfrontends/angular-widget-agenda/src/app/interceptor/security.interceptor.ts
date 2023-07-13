@@ -18,7 +18,6 @@ export class SecurityInterceptor implements HttpInterceptor {
 
   getDefaultOptions() {
     const token = this.getKeycloakToken();
-    console.log('adding token', token)
 
     return {
       Authorization: `Bearer ${token}`,
@@ -31,7 +30,6 @@ export class SecurityInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
 
-    console.log("alklooooooooora")
     const headers = this.getDefaultOptions();
 
     request = request.clone({

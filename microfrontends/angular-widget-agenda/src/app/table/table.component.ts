@@ -20,7 +20,9 @@ export class TableComponent {
     }
 
     ngOnInit(): void {
-        this.subscription = this.contactService.getContacts().subscribe((data: Contact[]) => this.contactList = data);
+        this.subscription = this.contactService.getContacts().subscribe((data: Contact[]) => {
+            this.contactList = data.sort((a, b) => b.id - a.id);
+        });
     }
 
     ngOnDestroy() {

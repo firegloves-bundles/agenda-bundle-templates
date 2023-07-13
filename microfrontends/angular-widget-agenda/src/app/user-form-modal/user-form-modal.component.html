@@ -1,27 +1,35 @@
 <label for="my-modal" #myModalLabel class="btn btn-primary float-right" [class.hidden]="!showBtn">Add user</label>
 
-<input type="checkbox" id="my-modal" class="modal-toggle" />
+<input type="checkbox" id="my-modal" class="modal-toggle"/>
 <div class="modal">
   <form method="dialog" class="modal-box">
     <h3 class="font-bold text-lg">{{ title }}</h3>
 
     <section class="listing-apply">
       <form [formGroup]="contactForm" (submit)="saveContact()">
-        <label for="first-name" class="label">Name</label>
-        <input id="first-name" type="text" formControlName="name" class="input w-full max-w-xs">
+        <div class="form-control">
+          <label for="first-name" class="label">Name</label>
+          <input id="first-name" type="text" formControlName="name" class="input w-full input-bordered">
+        </div>
 
-        <label for="last-name" class="label">Last name</label>
-        <input id="last-name" type="text" formControlName="lastname" class="input w-full max-w-xs">
+        <div class="form-control">
+          <label for="last-name" class="label">Last name</label>
+          <input id="last-name" type="text" formControlName="lastname" class="input w-full input-bordered">
+        </div>
 
-        <label for="address" class="label">Address</label>
-        <input id="address" type="text" formControlName="address" class="input w-full max-w-xs">
+        <div class="form-control">
+          <label for="address" class="label">Address</label>
+          <input id="address" type="text" formControlName="address" class="input w-full input-bordered">
+        </div>
 
-        <label for="phone" class="label">Phone</label>
-        <input id="phone" type="text" formControlName="phone" class="input w-full max-w-xs">
+        <div class="form-control">
+          <label for="phone" class="label">Phone</label>
+          <input id="phone" type="text" formControlName="phone" class="input w-full input-bordered">
+        </div>
       </form>
     </section>
 
-    <div class="modal-action">
+    <div class="modal-action place-content-between">
       <label for="my-modal" class="btn">{{ actionText }}</label>
       <label for="my-modal" class="btn btn-primary" (click)="okBtnPressed()">SUBMIT</label>
     </div>

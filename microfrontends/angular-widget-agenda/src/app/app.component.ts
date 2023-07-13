@@ -7,6 +7,7 @@ import {KeycloakService} from './services/keycloak.service';
 import {UserFormModalComponent} from "./user-form-modal/user-form-modal.component";
 import {mfeconfig} from 'src/environments/environment';
 import {ContactService} from "./services/contact.service";
+import {Subscription} from "rxjs";
 
 @Component({
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -25,6 +26,8 @@ export class AppComponent implements OnInit {
     title = 'angular-widget-agenda';
     keycloak: any;
 
+    private kcSubscription!: Subscription;
+
     constructor(private keycloakService: KeycloakService,
                 private contactService: ContactService) {
     }
@@ -32,7 +35,7 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.setConfig();
         this.contactService.apiBaseUrl = this.config.systemParams.api["springboot-agenda-api"].url;
-        this.keycloakService.instance$.subscribe(kcInstance => {
+        this.kcSubscription = this.keycloakService.instance$.subscribe(kcInstance => {
             this.keycloak = kcInstance;
             if (kcInstance.initialized) {
                 this.contactService.fetchAndSetContacts();
@@ -48,7 +51,9 @@ export class AppComponent implements OnInit {
         }
     }
 
-    showUserFormModal() {
-        this.userFormModalComponent.showModal();
+    ngOnDestroy() {
+        if (this.kcSubscription) {
+            this.kcSubscription.unsubscribe();
+        }
     }
 }

@@ -1,4 +1,4 @@
-<div class="overflow-x-auto">
+<div>
   <table class="table table-zebra w-full mt-3" aria-label="Users Agenda">
     <thead>
       <tr>
@@ -11,21 +11,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let contact of contactList">
-        <td class="font-bold">{{ contact.id }}</td>
-        <td>{{ contact.name }}</td>
-        <td>{{ contact.lastname }}</td>
-        <td>{{ contact.address }}</td>
-        <td>{{ contact.phone }}</td>
-        <td><app-detailsmenu [contact]="contact"></app-detailsmenu></td>
-      </tr>
-      <tr>
-        <td class="font-bold">1</td>
-        <td>aaa</td>
-        <td>ddd</td>
-        <td>fff</td>
-        <td>543433</td>
-        <td><app-detailsmenu></app-detailsmenu></td>
+      <tr *ngFor="let contact of contactList" class="hover">
+        <td class="font-bold"><span class='label-text'>{{ contact.id }}</span></td>
+        <td><span class='label-text'>{{ contact.name }}</span></td>
+        <td><span class='label-text'>{{ contact.lastname }}</span></td>
+        <td><span class='label-text'>{{ contact.address }}</span></td>
+        <td><span class='label-text'>{{ contact.phone }}</span></td>
+        <td><span class='label-text'><app-detailsmenu [contact]="contact"></app-detailsmenu></span></td>
       </tr>
     </tbody>
   </table>
