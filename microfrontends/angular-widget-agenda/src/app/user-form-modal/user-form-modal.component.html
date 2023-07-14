@@ -1,0 +1,29 @@
+<label (click)="toggleModal()" class="btn btn-primary float-right" [class.hidden]="!showBtn">Add user</label>
+
+<div class="modal" [ngClass]="{'modal-open': showModal}">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-lg">{{ title }}</h3>
+
+    <section class="listing-apply">
+      <form [formGroup]="contactForm" (submit)="saveContact()">
+          <label for="first-name" class="label">Name</label>
+          <input id="first-name" type="text" formControlName="name" class="input w-full input-bordered">
+
+          <label for="last-name" class="label">Last name</label>
+          <input id="last-name" type="text" formControlName="lastname" class="input w-full input-bordered">
+
+          <label for="address" class="label">Address</label>
+          <input id="address" type="text" formControlName="address" class="input w-full input-bordered">
+
+          <label for="phone" class="label">Phone</label>
+          <input id="phone" type="text" formControlName="phone" class="input w-full input-bordered">
+      </form>
+    </section>
+
+    <div class="modal-action place-content-between">
+      <label (click)="cancelBtnPressed()" class="btn">{{ actionText }}</label>
+      <label (click)="okBtnPressed()" class="btn btn-primary">SUBMIT</label>
+    </div>
+
+  </form>
+</div>

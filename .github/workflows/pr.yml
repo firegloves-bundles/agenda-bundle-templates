@@ -17,27 +17,27 @@ jobs:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-    - uses: actions/setup-java@v3
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-    - name: SonarQube Scan
-      run: |
-        versionSuffix=$(echo "${{ github.event.pull_request.title }}" | awk '{print $1}')
-        bash .github/functions/utils.sh setBundleVersion -$versionSuffix
-        bash .github/functions/utils.sh setComponentVersions -$versionSuffix
-        ent npm install -g npm
-        ent --debug bundle build --all --stdout --fail-fast
-        cd microservices/springboot-agenda && mvn sonar:sonar --no-transfer-progress && cd ../..
-        cd microfrontends/angular-widget-agenda && ent npm run sonar && cd ../..
-        cd microfrontends/react-widget-agenda && ent npm run sonar && cd ../..
-        cd microfrontends/vue-widget-agenda && ent npm run sonar && cd ../..
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: SonarQube Scan
+        run: |
+          versionSuffix=$(echo "${{ github.event.pull_request.title }}" | awk '{print $1}')
+          bash .github/functions/utils.sh setBundleVersion -$versionSuffix
+          bash .github/functions/utils.sh setComponentVersions -$versionSuffix
+          ent npm install -g npm
+          ent --debug bundle build --all --stdout --fail-fast
+          cd microservices/springboot-agenda && mvn sonar:sonar --no-transfer-progress && cd ../..
+          cd microfrontends/angular-widget-agenda && ent npm run sonar && cd ../..
+          cd microfrontends/react-widget-agenda && ent npm run sonar && cd ../..
+          cd microfrontends/vue-widget-agenda && ent npm run sonar && cd ../..
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
   build:
     runs-on: ubuntu-latest
     container:

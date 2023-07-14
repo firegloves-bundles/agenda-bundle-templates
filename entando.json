@@ -55,7 +55,14 @@
             "titles": {
                 "en": "angular-widget-agenda",
                 "it": "angular-widget-agenda"
-            }
+            },
+            "apiClaims": [
+                {
+                    "name": "springboot-agenda-api",
+                    "type": "internal",
+                    "serviceName": "springboot-agenda"
+                }
+            ]
         },
         {
             "name": "react-widget-agenda",

@@ -24,6 +24,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "styles": [
+              "src/styles.css"
+            ],
             "customWebpackConfig": {
               "path": "webpack.config.js"
             },
@@ -74,10 +77,16 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

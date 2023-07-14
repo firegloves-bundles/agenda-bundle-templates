@@ -1,10 +1,17 @@
-import { createCustomElement } from '@angular/elements';
-import { createApplication } from '@angular/platform-browser';
-import { AppComponent } from './app/app.component';
+import 'zone.js';
+import {createCustomElement} from '@angular/elements';
+import {createApplication} from '@angular/platform-browser';
+import {AppComponent} from './app/app.component';
+import {HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient} from "@angular/common/http";
+import {SecurityInterceptor} from "./app/interceptor/security.interceptor";
+import {importProvidersFrom} from "@angular/core";
 
 (async () => {
   const app = await createApplication({
-    providers: []
+    providers: [
+      importProvidersFrom(HttpClientModule),
+      { provide: HTTP_INTERCEPTORS, useClass: SecurityInterceptor, multi: true },
+    ]
   });
 
   const element = createCustomElement(AppComponent, {
@@ -12,4 +19,8 @@ import { AppComponent } from './app/app.component';
   });
 
   customElements.define('angular-widget-agenda', element);
+
+
 })();
+
+

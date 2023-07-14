@@ -18,7 +18,7 @@ const confirmDeleteUser = () => {
     <div class="modal-box">
       <h3 class="font-bold text-lg">Delete User {{ userId }}</h3>
       <div class='w-full place-content-between'>
-        <div class="modal-action w-full place-content-between pt-3tion">
+        <div class="modal-action w-full place-content-between pt-3">
           <label for="my-modal btn-secondary" class="btn" @click="emit('cancel-delete-user')">Cancel</label>
           <button class="btn btn-primary float-right" @click="confirmDeleteUser">Confirm</button>
         </div>
