@@ -9,8 +9,7 @@ import {UserFormModalComponent} from "../user-form-modal/user-form-modal.compone
     selector: 'app-detailsmenu',
     standalone: true,
     imports: [CommonModule, ModalComponent, UserFormModalComponent],
-    templateUrl: './detailsmenu.component.html',
-    styleUrls: ['./detailsmenu.component.css']
+    templateUrl: './detailsmenu.component.html'
 })
 export class DetailsmenuComponent {
 
@@ -31,12 +30,12 @@ export class DetailsmenuComponent {
 
     editContact() {
         this.toggleMenu();
-        this.userFormModalComponent.showModal();
+        this.userFormModalComponent.toggleModal();
     }
 
     toggleConfirmationModal() {
         this.toggleMenu();
-        this.modalComponent.showModal();
+        this.modalComponent.toggleModal();
     }
 
     deleteContact() {

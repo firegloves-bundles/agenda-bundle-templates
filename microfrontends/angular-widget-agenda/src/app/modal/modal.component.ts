@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -14,13 +14,14 @@ export class ModalComponent {
 
     @Output() okBtnPressedEvent = new EventEmitter<string>();
 
-    @ViewChild('modal') modal!: ElementRef;
+    showModal = false;
 
     okBtnPressed() {
+        this.toggleModal();
         this.okBtnPressedEvent.emit();
     }
 
-    showModal(): void {
-        this.modal.nativeElement.showModal();
+    toggleModal() {
+        this.showModal = !this.showModal;
     }
 }

@@ -20,8 +20,7 @@ export class UserFormModalComponent {
 
   @Output() okBtnPressedEvent = new EventEmitter<string>();
 
-  @ViewChild('myModalLabel') modalLabel!: ElementRef;
-
+  showModal = false;
   contactForm!: FormGroup;
 
   constructor(private contactService: ContactService) {
@@ -49,10 +48,12 @@ export class UserFormModalComponent {
   }
 
   okBtnPressed() {
+    this.toggleModal();
     this.saveContact();
   }
 
-  showModal(): void {
-      this.modalLabel.nativeElement.click();
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
+
 }

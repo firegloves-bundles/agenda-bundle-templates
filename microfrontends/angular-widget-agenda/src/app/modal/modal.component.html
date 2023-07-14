@@ -1,9 +1,9 @@
-<dialog #modal class="modal">
+<div class="modal" [ngClass]="{'modal-open': showModal}">
   <form method="dialog" class="modal-box">
     <h3 class="font-bold text-lg">{{ title }}</h3>
     <div class="modal-action">
-      <button class="btn btn-secondary">{{ actionText }}</button>
-      <button class="btn btn-primary" (click)="okBtnPressed()">SUBMIT</button>
+      <label class="btn" (click)="toggleModal()">{{ actionText }}</label>
+      <label class="btn btn-primary" (click)="okBtnPressed()">SUBMIT</label>
     </div>
   </form>
-</dialog>
+</div>

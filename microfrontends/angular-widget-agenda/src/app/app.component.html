@@ -3,7 +3,7 @@
   <app-container>
     <div class="app-header w-full flex justify-end">
       <span class="text-2xl w-64 mt-3">Users Agenda</span>
-      <app-user-form-modal buttonText="ADD USER" actionText="CANCEL" title="Add User" [showBtn]="true" class="flex-auto mt-3"></app-user-form-modal>
+      <app-user-form-modal #userFormModal buttonText="ADD USER" actionText="CANCEL" title="Add User" [showBtn]="true" class="flex-auto mt-3"></app-user-form-modal>
     </div>
     <app-table></app-table>
   </app-container>
