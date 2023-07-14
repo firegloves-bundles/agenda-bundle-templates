@@ -62,4 +62,4 @@ ent bundle run --all-mfe
 ## Conclusion
 Congratulations! You have successfully created your own bundle based on this project. You can now start developing your application by customizing the backend and microfrontends according to your requirements. Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
-If you need any further assistance or have any questions, please refer to the project documentation or reach out to our [Slack Community](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw) for help.
+If you need any further assistance or have any questions, please refer to the project documentation or reach out to our (https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)[Slack Community] for help.
