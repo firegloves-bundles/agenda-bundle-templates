@@ -27,6 +27,10 @@ export class UserFormModalComponent {
   }
 
   ngOnInit() {
+    this.initFormFields();
+  }
+
+  initFormFields() {
     this.contactForm = new FormGroup({
       name: new FormControl(this.contact && this.contact.name || ''),
       lastname: new FormControl(this.contact && this.contact.lastname || ''),
@@ -50,6 +54,11 @@ export class UserFormModalComponent {
   okBtnPressed() {
     this.toggleModal();
     this.saveContact();
+  }
+
+  cancelBtnPressed() {
+    this.toggleModal();
+    this.initFormFields();
   }
 
   toggleModal() {

@@ -41,8 +41,6 @@ export class AppComponent implements OnInit {
                 this.contactService.fetchAndSetContacts();
             }
         });
-        // FIXME
-        this.contactService.fetchAndSetContacts();
     }
 
     private setConfig() {
