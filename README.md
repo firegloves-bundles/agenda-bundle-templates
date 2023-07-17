@@ -27,15 +27,18 @@ ent bundle init my-bundle --from-hub --hub-url=<hub_url>
 ```
 Replace `<hub_url>` with the URL of the hub from where you want to initialize your bundle.
 
-### Optional: Remove Unwanted Microfrontends
-1. Open a terminal or command prompt. 
-2. Navigate to the project root directory. 
-3. Run the following command to remove a specific microfrontend:
-```bash
-ent bundle mfe rm <mfe_name>
-```
 Replace <mfe_name> with the name of the microfrontend you want to remove (e.g., vue-widget-agenda, angular-widget-agenda, react-widget-agenda).
 Note: Be cautious when removing a microfrontend as it will permanently delete the corresponding files and configurations.
+
+### Services included
+The current bundle provides two services: Keycloack and Posgresql. Use them to create your dev environment. These are not aimed to be used in production.
+Start the services before starting the components
+```bash
+ent bundle svc start agenda-keycloak
+```
+```bash
+ent bundle svc start agenda-postgresql
+```
 
 ### Backend Configuration and Start
 1. Open the project in your preferred Java IDE or text editor.
@@ -56,12 +59,21 @@ ent bundle run springboot-agenda
 ```bash
 ent bundle run <mfe-name>
 ```
-> Replace `<mfe_name>` with the name of the microfrontend you want to run.
+> Replace `<mfe_name>` with the name of the microfrontend you want to run. You can find the names in the entando.json file
 
 If you want to run all the microfrontends using one command, you use that command instead:
 ```bash
 ent bundle run --all-mfe
 ```
+
+### Optional: Remove Unwanted Microfrontends
+1. Open a terminal or command prompt. 
+2. Navigate to the project root directory. 
+3. Run the following command to remove a specific microfrontend:
+```bash
+ent bundle mfe rm <mfe_name>
+```
+
 ## Conclusion
 Congratulations! You have successfully created your own bundle based on this project. You can now start developing your application by customizing the backend and microfrontends according to your requirements. Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
