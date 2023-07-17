@@ -1,9 +1,12 @@
 # Project Documentation: Bundle Creation Guide
 
 ## Introduction
-Welcome to the documentation for the bundle creation process of the project. This project serves as a bundle, acting as a wrapper that combines multiple components into a final application. It includes a Java Spring Boot backend and three microfrontends implemented using different frameworks: Angular, React, and Vue.js.
+Welcome to the documentation for the agenda-bundle-template. This project serves as a pro-code bundle, it combines multiple components to help creators starting with new bundle.
+It includes a Java Spring Boot backend and three microfrontends implemented using different frameworks: Angular, React, and Vue.js.
 
 The purpose of this bundle is to provide users with a sample or template to kickstart their own application development.
+
+The following documentation helps you to start using it as a template.
 
 ## Prerequisites
 Before proceeding with the bundle creation process, ensure that you have the following prerequisites installed on your system:
@@ -11,7 +14,7 @@ Before proceeding with the bundle creation process, ensure that you have the fol
 1. Java Development Kit (JDK) - version 17
 2. Node.js - version 18 or higher
 3. NPM - version 9 or higher
-4. text editor or an integrated development environment (IDE) of your choice
+4. Entando CLI v7.x
 
 ## Bundle Creation Process
 
