@@ -1,22 +1,20 @@
-# Project Documentation: Bundle Creation Guide
+# Agenda Bundle Template
 
 ## Introduction
 Welcome to the documentation for the agenda-bundle-template. This project serves as a pro-code bundle, it combines multiple components to help creators starting with new bundle.
 It includes a Java Spring Boot backend and three microfrontends implemented using different frameworks: Angular, React, and Vue.js.
 
+## Create a bundle from the template
 The purpose of this bundle is to provide users with a sample or template to kickstart their own application development.
 
 The following documentation helps you to start using it as a template.
-
-## Prerequisites
+### Prerequisites
 Before proceeding with the bundle creation process, ensure that you have the following prerequisites installed on your system:
 
 1. Java Development Kit (JDK) - version 17
 2. Node.js - version 18 or higher
 3. NPM - version 9 or higher
 4. Entando CLI v7.x
-
-## Bundle Creation Process
 
 ### Initialize Your Bundle
 1. Open a terminal or command prompt.
@@ -75,6 +73,6 @@ ent bundle mfe rm <mfe_name>
 ```
 
 ## Conclusion
-Congratulations! You have successfully created your own bundle based on this project. You can now start developing your application by customizing the backend and microfrontends according to your requirements. Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
+Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
 If you need any further assistance or have any questions, please refer to the project documentation or reach out to our (https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)[Slack Community] for help.
