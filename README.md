@@ -3,6 +3,55 @@
 ## Introduction
 Welcome to the documentation for the agenda-bundle-template. This project serves as a pro-code bundle, it combines multiple components to help creators starting with new bundle.
 It includes a Java Spring Boot backend and three microfrontends implemented using different frameworks: Angular, React, and Vue.js.
+## The components
+### The Spring boot microservice
+This microservice exposes an API to manage the agenda features. You access it from the `microservices/springboot-agenda` folder.
+The endpoints are secured, accordingly with the business rules, with Spring Security using annotations. 
+
+```
+@PostMapping("/contact")
+@PreAuthorize("hasRole('admin')")
+@SecurityRequirement(name = "agenda_auth")
+public ResponseEntity<ContactRecord> createContact(@RequestBody ContactRecord contact) throws URISyntaxException {
+    log.debug("REST request to create a NEW contact: {}", contact );
+
+    ContactRecord created = contactService.save(contact);
+
+    return ResponseEntity
+            .created(new URI("/api/contacts/" + created.id()))
+            .body(created);
+}
+```
+
+You can access the swagger-ui to test the API from this URL: [http://localhost:8081/swagger-ui/index.html]()
+
+### The microfrontends
+All the three microfrontends provide the same user experience with a close look and feel. So, you have the choice to choose with which technology you can start your composable journey.
+The microfrontends are delivered with a preconfigured API Claims to work both locally, and on the Entando platform.
+
+```
+export const mfeconfig = {
+    "systemParams": {
+        "api": {
+            "springboot-agenda-api": {
+                "url": "http://localhost:8081"
+            }
+        }
+    }
+}
+```
+This doesn't require you extra steps to work, but if you want to learn more about API Claims, you can check our [official tutorial](https://developer.entando.com/v7.2/tutorials/create/ms/add-api-claim.html#prerequisites).
+
+The agenda allows you to
+- access the users list:
+![](Screenshot_01.png)
+
+- Add a new user:
+![](Screenshot_02.png)
+![](Screenshot_03.png)
+
+- Edit or delete one:
+![](Screenshot_04.png)
 
 ## Create a bundle from the template
 The purpose of this bundle is to provide users with a sample or template to kickstart their own application development.
