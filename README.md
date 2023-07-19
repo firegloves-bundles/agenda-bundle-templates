@@ -121,7 +121,17 @@ ent bundle run --all-mfe
 ent bundle mfe rm <mfe_name>
 ```
 
+## Running on an Entando instance
+To run that bundle on an Entando require an extra step compared to do it locally.
+After having [deploy and install](https://developer.entando.com/v7.2/tutorials/create/pb/publish-project-bundle.html#create-and-deploy-a-bundle-project) your bundle, or install it from a hub, you have to configure Keycloak.
+- Access to your Keycloak admin UI https://namespace_url/auth/
+- Then open the "Users" menu, search for your user (the user you are connected to the agenda-bundle application), and click on the "Role Mappings" tab
+- Then Select the bundle Client Roles in the "Client Roles" list
+- Finally, add a role (Admin or User) to the user
+
+![](Screenshot_05.png)
+
 ## Conclusion
 Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
-If you need any further assistance or have any questions, please refer to the project documentation or reach out to our (https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw)[Slack Community] for help.
+If you need any further assistance or have any questions, please refer to the project documentation or reach out to our [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw) for help.
