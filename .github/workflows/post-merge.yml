@@ -36,6 +36,7 @@ jobs:
           versionSuffix=SNAPSHOT
           bash .github/functions/utils.sh setBundleVersion -$versionSuffix
           bash .github/functions/utils.sh setComponentVersions -$versionSuffix
+          ent npm install -g npm
           ent --debug bundle pack --org $DOCKER_ORG --stdout --fail-fast
           ent --debug bundle publish
           version=$(bash .github/functions/utils.sh getBundleImage)
@@ -59,6 +60,7 @@ jobs:
           versionSuffix=SNAPSHOT
           bash .github/functions/utils.sh setBundleVersion -$versionSuffix
           bash .github/functions/utils.sh setComponentVersions -$versionSuffix
+          ent npm install -g npm
           ent bundle build --all --stdout --fail-fast
           cd microservices/springboot-agenda && mvn sonar:sonar --no-transfer-progress && cd ../..
           cd microfrontends/angular-widget-agenda && ent npm run sonar && cd ../..

@@ -38,6 +38,7 @@ jobs:
         run: |
           bash .github/functions/utils.sh setBundleVersionTag ${RELEASE_VERSION#v}
           bash .github/functions/utils.sh setComponentVersionsTag ${RELEASE_VERSION#v}
+          ent npm install -g npm
           ent --debug bundle pack --org $DOCKER_ORG --stdout --fail-fast
           ent --debug bundle publish
           version=$(bash .github/functions/utils.sh getBundleImage)
