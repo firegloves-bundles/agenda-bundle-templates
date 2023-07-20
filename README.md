@@ -126,7 +126,7 @@ Note: Be cautious when removing a micro frontend as it will permanently delete t
 To run the bundle on Entando for production requires an extra step compared to running it locally.
 After [deploying and installing](https://developer.entando.com/v7.2/tutorials/create/pb/publish-project-bundle.html#create-and-deploy-a-bundle-project) your bundle, or installing the bundle from a hub, you have to configure Keycloak.
 - Access to your Keycloak admin UI: https://YOUR-HOST-NAME/auth/
-- Then open the "Users" menu, search for the relevant user (the user connected to the agenda-bundle application), and click on the "Role Mappings" tab
+- Then open the "Users" menu, search for the relevant user (the user to be granted to use the agenda-bundle components), and click on the "Role Mappings" tab
 - Then Select the bundle Client Roles in the "Client Roles" list
 - Finally, add a role (Admin or User) to the user
 
