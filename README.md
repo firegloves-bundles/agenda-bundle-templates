@@ -1,12 +1,12 @@
 # Agenda Bundle Template
 
 ## Introduction
-Welcome to the documentation for the agenda-bundle-template. This project serves as a pro-code bundle, it combines multiple components to help creators starting with new bundle.
-It includes a Java Spring Boot backend and three microfrontends implemented using different frameworks: Angular, React, and Vue.js.
+Welcome to the documentation for the agenda-bundle-template. This project is a pro-code bundle template, combining multiple components to help creators start a new bundle.
+It includes a Java Spring Boot backend and three micro frontends, implemented using three different frameworks: Angular, React, and Vue.js.
 ## The components
 ### The Spring boot microservice
 This microservice exposes an API to manage the agenda features. You access it from the `microservices/springboot-agenda` folder.
-The endpoints are secured, accordingly with the business rules, with Spring Security using annotations. 
+The endpoints are secured accordingly with the business rules, with Spring Security using annotations. 
 
 ```
 @PostMapping("/contact")
@@ -23,11 +23,11 @@ public ResponseEntity<ContactRecord> createContact(@RequestBody ContactRecord co
 }
 ```
 
-You can access the swagger-ui to test the API from this URL: [http://localhost:8081/swagger-ui/index.html]()
+You can access the Swagger-UI to test the API from this URL: [http://localhost:8081/swagger-ui/index.html]()
 
 ### The microfrontends
-All the three microfrontends provide the same user experience with a close look and feel. So, you have the choice to choose with which technology you can start your composable journey.
-The microfrontends are delivered with a preconfigured API Claims to work both locally, and on the Entando platform.
+All three micro frontends provide a consistent user experience, with a similiar look and feel. So, you have the choice to choose which technology you want to start your composable journey.
+The micro frontends are delivered with preconfigured API claims to work both locally and on the Entando Platform.
 
 ```
 export const mfeconfig = {
@@ -40,9 +40,9 @@ export const mfeconfig = {
     }
 }
 ```
-This doesn't require you extra steps to work, but if you want to learn more about API Claims, you can check our [official tutorial](https://developer.entando.com/v7.2/tutorials/create/ms/add-api-claim.html#prerequisites).
+This doesn't require extra steps to work, but if you want to learn more about API claims, you can check our [official tutorial](https://developer.entando.com/v7.2/tutorials/create/ms/add-api-claim.html#prerequisites).
 
-The agenda allows you to
+The agenda allows you to:
 - access the users list:
 ![](Screenshot_01.png)
 
@@ -54,7 +54,7 @@ The agenda allows you to
 ![](Screenshot_04.png)
 
 ## Create a bundle from the template
-The purpose of this bundle is to provide users with a sample or template to kickstart their own application development.
+The purpose of this bundle is to provide users with a template or sample to kickstart their own application development.
 
 The following documentation helps you to start using it as a template.
 ### Prerequisites
@@ -94,38 +94,38 @@ ent bundle svc start agenda-postgresql
 ```bash
 ent bundle run springboot-agenda
 ```
-> Please note, the springboot-agenda microservice require both a Postgresql database, and a Keycloak to run.
-> This bundle provides SVC to run them as container for development purposes
+> Please note, the springboot-agenda microservice requires both a Postgresql database and a Keycloak to run.
+> This bundle provides a SVC to run them as container for development purposes
 > run `ent bundle svc start agenda-postgresql` and `ent bundle svc start agenda-keycloak`
 
-### Microfrontend Configuration and Build
-1. For each microfrontend framework (Angular, React, and Vue.js):
-- Open the respective microfrontend module in your preferred IDE or text editor.
-- Customize the microfrontend code and configurations as per your application needs.
-2. Install the project dependencies and build the microfrontends by running the following command in a terminal or command prompt:
+### Micro frontend Configuration and Build
+1. For each micro frontend framework (Angular, React, and Vue.js):
+- Open the corresponding micro frontend module in your preferred IDE or text editor.
+- Customize the micro frontend code and configurations as per your application's needs.
+2. Install the project dependencies and build the micro frontends by running the following command in a terminal or command prompt:
 ```bash
 ent bundle run <mfe-name>
 ```
 > Replace `<mfe_name>` with the name of the microfrontend you want to run. You can find the names in the entando.json file
 
-If you want to run all the microfrontends using one command, you use that command instead:
+If you want to run all the micro frontends using one command, use this command instead:
 ```bash
 ent bundle run --all-mfe
 ```
 
 ### Optional: Remove Unwanted Microfrontends
 1. Open a terminal or command prompt. 
-2. Navigate to the project root directory. 
+2. Navigate to the project's root directory. 
 3. Run the following command to remove a specific microfrontend:
 ```bash
 ent bundle mfe rm <mfe_name>
 ```
 
 ## Running on an Entando instance
-To run that bundle on an Entando require an extra step compared to do it locally.
-After having [deploy and install](https://developer.entando.com/v7.2/tutorials/create/pb/publish-project-bundle.html#create-and-deploy-a-bundle-project) your bundle, or install it from a hub, you have to configure Keycloak.
-- Access to your Keycloak admin UI https://namespace_url/auth/
-- Then open the "Users" menu, search for your user (the user you are connected to the agenda-bundle application), and click on the "Role Mappings" tab
+To run the bundle on Entando for production requires an extra step compared to running it locally.
+After [deploying and installing](https://developer.entando.com/v7.2/tutorials/create/pb/publish-project-bundle.html#create-and-deploy-a-bundle-project) your bundle, or installing the bundle from a hub, you have to configure Keycloak.
+- Access to your Keycloak admin UI: https://namespace_url/auth/
+- Then open the "Users" menu, search for the relevant user (the user connected to the agenda-bundle application), and click on the "Role Mappings" tab
 - Then Select the bundle Client Roles in the "Client Roles" list
 - Finally, add a role (Admin or User) to the user
 
@@ -134,4 +134,4 @@ After having [deploy and install](https://developer.entando.com/v7.2/tutorials/c
 ## Conclusion
 Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
-If you need any further assistance or have any questions, please refer to the project documentation or reach out to our [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw) for help.
+If you need further assistance or have any questions, please refer to the project documentation or reach out to our [Community Slack](https://join.slack.com/t/entandocommunity/shared_invite/zt-g609owdv-2K~YRh8zrI6lqlWo4aFWUw) for help.
