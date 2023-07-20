@@ -73,9 +73,6 @@ Before proceeding with the bundle creation process, ensure that you have the fol
 ent bundle init my-bundle --from-hub --hub-url=http://pbcdev.k8s-entando.org/entando-hub-api/
 ```
 
-Replace <mfe_name> with the name of the microfrontend you want to remove (e.g., vue-widget-agenda, angular-widget-agenda, react-widget-agenda).
-Note: Be cautious when removing a microfrontend as it will permanently delete the corresponding files and configurations.
-
 ### Services included
 The current bundle provides two services: Keycloack and Posgresql. Use them to create your dev environment. These are not aimed to be used in production.
 Start the services before starting the components
@@ -113,12 +110,17 @@ ent bundle run --all-mfe
 ```
 
 ### Optional: Remove Unwanted Microfrontends
+If you don't need to keep all the three micro frontends implementations, you can easily remove them from the bundle by using the CLI:
+
 1. Open a terminal or command prompt. 
 2. Navigate to the project's root directory. 
-3. Run the following command to remove a specific microfrontend:
+3. Run the following command to remove a specific micro frontend:
 ```bash
-ent bundle mfe rm <mfe_name>
+ent bundle mfe rm MFE-NAME
 ```
+
+Replace MFE-NAME with the name of the micro frontend you want to remove (e.g., vue-widget-agenda, angular-widget-agenda, react-widget-agenda).
+Note: Be cautious when removing a micro frontend as it will permanently delete the corresponding files and configurations.
 
 ## Running on an Entando instance
 To run the bundle on Entando for production requires an extra step compared to running it locally.
