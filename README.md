@@ -68,11 +68,10 @@ Before proceeding with the bundle creation process, ensure that you have the fol
 ### Initialize Your Bundle
 1. Open a terminal or command prompt.
 2. Navigate to the directory where you want to create your bundle.
-3. Run the following command to initialize your bundle:
+3. Run the following command to initialize your bundle, and select the "Agenda Bundle Templates" in the list:
 ```bash
-ent bundle init my-bundle --from-hub --hub-url=<hub_url>
+ent bundle init my-bundle --from-hub --hub-url=http://pbcdev.k8s-entando.org/entando-hub-api/
 ```
-Replace `<hub_url>` with the URL of the hub from where you want to initialize your bundle.
 
 Replace <mfe_name> with the name of the microfrontend you want to remove (e.g., vue-widget-agenda, angular-widget-agenda, react-widget-agenda).
 Note: Be cautious when removing a microfrontend as it will permanently delete the corresponding files and configurations.
@@ -95,8 +94,8 @@ ent bundle svc start agenda-postgresql
 ent bundle run springboot-agenda
 ```
 > Please note, the springboot-agenda microservice requires both a Postgresql database and a Keycloak to run.
-> This bundle provides a SVC to run them as container for development purposes
-> run `ent bundle svc start agenda-postgresql` and `ent bundle svc start agenda-keycloak`
+> This bundle provides a SVC to run them as container for development purposes.
+> run `ent bundle svc start agenda-postgresql` and `ent bundle svc start agenda-keycloak`.
 
 ### Micro frontend Configuration and Build
 1. For each micro frontend framework (Angular, React, and Vue.js):
@@ -124,7 +123,7 @@ ent bundle mfe rm <mfe_name>
 ## Running on an Entando instance
 To run the bundle on Entando for production requires an extra step compared to running it locally.
 After [deploying and installing](https://developer.entando.com/v7.2/tutorials/create/pb/publish-project-bundle.html#create-and-deploy-a-bundle-project) your bundle, or installing the bundle from a hub, you have to configure Keycloak.
-- Access to your Keycloak admin UI: https://namespace_url/auth/
+- Access to your Keycloak admin UI: https://YOUR-HOST-NAME/auth/
 - Then open the "Users" menu, search for the relevant user (the user connected to the agenda-bundle application), and click on the "Role Mappings" tab
 - Then Select the bundle Client Roles in the "Client Roles" list
 - Finally, add a role (Admin or User) to the user
