@@ -134,6 +134,14 @@ After [deploying and installing](https://developer.entando.com/v7.2/tutorials/cr
 
 ![](Screenshot_05.png)
 
+## Bundle pipelines
+
+This project comes bundled with 3 GitHub Actions workflow files present in the folder `.github/workflows`:
+- `pr.yml`: executes SonarCloud checks, builds the bundle components and publish a test artifact on DockerHub
+- `post-merge.yml`: equal to pr.yml but executed after the PR merge
+- `release.yml`: on tag creation builds and publish an artifact on DockerHub
+You can take inspiration from these workflows to automate your development.
+
 ## Conclusion
 Feel free to explore the code and leverage this bundle as a sample or template for your future projects.
 
