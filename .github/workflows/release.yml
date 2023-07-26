@@ -5,7 +5,7 @@ on:
       - 'v*'
 
 env:
-  LD_LIBRARY_PATH: /__t/Java_Temurin-Hotspot_jdk/17.0.7-7/x64/lib/server
+  LD_LIBRARY_PATH: /__t/Java_Temurin-Hotspot_jdk/17.0.8-7/x64/lib/server
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '17.0.8+7'
       - name: Checkout Code
         uses: actions/checkout@v3
       - name: Login to Docker Hub
