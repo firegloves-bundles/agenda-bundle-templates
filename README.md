@@ -53,6 +53,8 @@ The agenda allows you to:
 - Edit or delete one:
 ![](Screenshot_04.png)
 
+Because Entando follows the philosophy of composition, all 3 microfrontends use TailwindCSS and DaisyUI (also applying a custom theme) with the goal of pushing composition to the most advanced levels and allowing developers to focus on developing functionality instead of reinventing the wheel.
+
 ## Create a bundle from the template
 The purpose of this bundle is to provide users with a template or sample to kickstart their own application development.
 
