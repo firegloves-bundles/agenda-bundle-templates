@@ -63,7 +63,7 @@ The following documentation helps you to start using it as a template.
 Before proceeding with the bundle creation process, ensure that you have the following prerequisites installed on your system:
 
 1. Java Development Kit (JDK) - version 17
-2. Node.js - version 14.2 or higher
+2. Node.js - version 14.20 or higher
 3. NPM - Included with the Node version
 4. Entando CLI v7.x
 
