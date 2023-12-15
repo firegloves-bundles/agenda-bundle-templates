@@ -5,7 +5,7 @@
     <h3 class="font-bold text-lg">{{ title }}</h3>
 
     <section class="listing-apply">
-      <form [formGroup]="contactForm" (submit)="saveContact()">
+      <form [formGroup]="contactForm" (ngSubmit)="okBtnPressed()">
           <label for="first-name" class="label">Name</label>
           <input id="first-name" type="text" formControlName="name" class="input w-full input-bordered">
 
@@ -17,13 +17,13 @@
 
           <label for="phone" class="label">Phone</label>
           <input id="phone" type="text" formControlName="phone" class="input w-full input-bordered">
+
+        <div class="modal-action place-content-between">
+          <label (click)="cancelBtnPressed()" class="btn">{{ actionText }}</label>
+          <input type="submit" [disabled]="!contactForm.valid" class="btn btn-primary" value="SUBMIT">
+        </div>
       </form>
     </section>
-
-    <div class="modal-action place-content-between">
-      <label (click)="cancelBtnPressed()" class="btn">{{ actionText }}</label>
-      <label (click)="okBtnPressed()" class="btn btn-primary">SUBMIT</label>
-    </div>
 
   </form>
 </div>

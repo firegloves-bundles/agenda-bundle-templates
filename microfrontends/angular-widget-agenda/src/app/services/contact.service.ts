@@ -24,7 +24,10 @@ export class ContactService {
 
     fetchAndSetContacts() {
         const url = `${this._apiBaseUrl}/api/contacts`;
-        this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => this.contactList.next(data));
+        let sub = this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => {
+            this.contactList.next(data);
+            sub.unsubscribe();
+        });
     }
 
     saveContact(id: any, name: string, lastname: string, address: string, phone: string): Observable<Contact> {

@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ContactService} from "../services/contact.service";
 import {Contact} from "../model/contact";
 
@@ -23,7 +23,7 @@ export class UserFormModalComponent {
   showModal = false;
   contactForm!: FormGroup;
 
-  constructor(private contactService: ContactService) {
+  constructor(private contactService: ContactService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -31,11 +31,11 @@ export class UserFormModalComponent {
   }
 
   initFormFields() {
-    this.contactForm = new FormGroup({
-      name: new FormControl(this.contact && this.contact.name || ''),
-      lastname: new FormControl(this.contact && this.contact.lastname || ''),
-      address: new FormControl(this.contact && this.contact.address || ''),
-      phone: new FormControl(this.contact && this.contact.phone || '')
+    this.contactForm = this.formBuilder.group({
+      name: [this.contact && this.contact.name || '', Validators.required],
+      lastname: [this.contact && this.contact.lastname || '', Validators.required],
+      address: [this.contact && this.contact.address || '', Validators.required],
+      phone: [this.contact && this.contact.phone || '', Validators.required],
     });
   }
 
