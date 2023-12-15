@@ -1,14 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Contact} from "../model/contact";
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {BehaviorSubject, catchError, Observable, throwError} from "rxjs";
+import {catchError, Observable, Subject, throwError} from "rxjs";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ContactService {
 
-    private contactList = new BehaviorSubject(new Array<Contact>());
+    private contactList = new Subject<Contact[]>();
     private contactList$ = this.contactList.asObservable();
     private _apiBaseUrl = '';
 
@@ -24,7 +24,10 @@ export class ContactService {
 
     fetchAndSetContacts() {
         const url = `${this._apiBaseUrl}/api/contacts`;
-        this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => this.contactList.next(data));
+        this.httpClient.get<Contact[]>(url).subscribe((data: Contact[]) => {
+            let contacts = data.sort((a, b) => b.id - a.id)
+            this.contactList.next(data);
+        });
     }
 
     saveContact(id: any, name: string, lastname: string, address: string, phone: string): Observable<Contact> {
